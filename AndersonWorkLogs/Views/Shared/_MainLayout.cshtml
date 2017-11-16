@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@Page.Title</title>
+
+    @Html.Partial("_PartialCSS")
+
+</head>
+<body>
+    <div class="card container">
+        <div class="form-group">
+            <center><h3>@Html.ActionLink("Home", "Index", "Home") &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Html.ActionLink("Work Logs", "Logs", "Logs")
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Html.ActionLink("About", "About", "Home")</h3></center>
+        </div>
+    </div> 
+
+    <div id="MainContainer" class="body-content" ng-app="App">
+        @Html.Partial("_PartialScript")
+        @RenderBody()
+    </div>
+    <div class="footer text-muted">
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <center> &copy; 2017. - Anderson Group BPO Inc. | <a href="#">AndersonWorkLogs</a> - Private and Confidential.</center>
+    </div>
+</body>
+</html>
