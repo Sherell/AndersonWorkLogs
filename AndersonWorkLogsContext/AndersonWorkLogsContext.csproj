@@ -30,18 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Base">
-      <HintPath>..\..\DLL\Debug\Base\Base.dll</HintPath>
-    </Reference>
-    <Reference Include="BaseData">
-      <HintPath>..\..\DLL\Debug\Base\BaseData.dll</HintPath>
-    </Reference>
-    <Reference Include="BaseEntity">
-      <HintPath>..\..\DLL\Debug\Base\BaseEntity.dll</HintPath>
-    </Reference>
-    <Reference Include="BaseModel">
-      <HintPath>..\..\DLL\Debug\Base\BaseModel.dll</HintPath>
-    </Reference>
+    <Reference Include="BaseEntity, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>

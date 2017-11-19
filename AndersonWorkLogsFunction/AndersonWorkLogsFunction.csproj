@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BaseData, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="BaseEntity, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="BaseModel, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition.Registration" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -48,15 +51,13 @@
     <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FWorkingHours.cs" />
-    <Compile Include="IFWorkingHours.cs" />
+    <Compile Include="FWorkLog.cs" />
+    <Compile Include="FAttendance.cs" />
+    <Compile Include="IFWorkLog.cs" />
+    <Compile Include="IFAttendance.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AndersonWorkLogsContext\AndersonWorkLogsContext.csproj">
-      <Project>{371a22fe-ca93-4cad-a466-83b13359080d}</Project>
-      <Name>AndersonWorkLogsContext</Name>
-    </ProjectReference>
     <ProjectReference Include="..\AndersonWorkLogsData\AndersonWorkLogsData.csproj">
       <Project>{48ef9837-35a0-4362-be78-862e05f1b8d9}</Project>
       <Name>AndersonWorkLogsData</Name>

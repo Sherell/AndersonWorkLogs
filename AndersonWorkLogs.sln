@@ -1,10 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2005
+VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AndersonWorkLogs", "AndersonWorkLogs\AndersonWorkLogs.csproj", "{E81B2BB0-27DB-48E3-8351-9FC4EF8C5D4D}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AndersonWorkLogsContext", "AndersonWorkLogsContext\AndersonWorkLogsContext.csproj", "{371A22FE-CA93-4CAD-A466-83B13359080D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AndersonWorkLogsEntity", "AndersonWorkLogsEntity\AndersonWorkLogsEntity.csproj", "{6C115883-32A8-4622-A699-31110A90DCEA}"
@@ -15,16 +13,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AndersonWorkLogsFunction", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AndersonWorkLogsData", "AndersonWorkLogsData\AndersonWorkLogsData.csproj", "{48EF9837-35A0-4362-BE78-862E05F1B8D9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AndersonWorkLogsWeb", "AndersonWorkLogsWeb\AndersonWorkLogsWeb.csproj", "{B5FECCD5-FE49-4A03-B134-81C78DF5F5FF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E81B2BB0-27DB-48E3-8351-9FC4EF8C5D4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E81B2BB0-27DB-48E3-8351-9FC4EF8C5D4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E81B2BB0-27DB-48E3-8351-9FC4EF8C5D4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E81B2BB0-27DB-48E3-8351-9FC4EF8C5D4D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{371A22FE-CA93-4CAD-A466-83B13359080D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{371A22FE-CA93-4CAD-A466-83B13359080D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{371A22FE-CA93-4CAD-A466-83B13359080D}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -45,6 +41,10 @@ Global
 		{48EF9837-35A0-4362-BE78-862E05F1B8D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{48EF9837-35A0-4362-BE78-862E05F1B8D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{48EF9837-35A0-4362-BE78-862E05F1B8D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5FECCD5-FE49-4A03-B134-81C78DF5F5FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5FECCD5-FE49-4A03-B134-81C78DF5F5FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5FECCD5-FE49-4A03-B134-81C78DF5F5FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5FECCD5-FE49-4A03-B134-81C78DF5F5FF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
