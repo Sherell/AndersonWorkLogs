@@ -10,7 +10,7 @@ namespace AndersonWorkLogsContext
         {
             if (Database.Exists())
             {
-                //Database.SetInitializer(new MigrateDatabaseToLatestVersion<Context, Migrations.Configuration>());
+                Database.SetInitializer(new MigrateDatabaseToLatestVersion<Context, Migrations.Configuration>());
             }
             else
             {
@@ -26,7 +26,7 @@ namespace AndersonWorkLogsContext
             modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
         }
 
-        public DbSet<EWorkingHours> WorkingHours { get; set; }
-
+        public DbSet<EAttendance> Attendances { get; set; }
+        public DbSet<EWorkLog> WorkLogs { get; set; }
     }
 }

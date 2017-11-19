@@ -30,18 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Base">
-      <HintPath>..\..\DLL\Debug\Base\Base.dll</HintPath>
-    </Reference>
-    <Reference Include="BaseData">
-      <HintPath>..\..\DLL\Debug\Base\BaseData.dll</HintPath>
-    </Reference>
-    <Reference Include="BaseEntity">
-      <HintPath>..\..\DLL\Debug\Base\BaseEntity.dll</HintPath>
-    </Reference>
-    <Reference Include="BaseModel">
-      <HintPath>..\..\DLL\Debug\Base\BaseModel.dll</HintPath>
-    </Reference>
+    <Reference Include="BaseEntity, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="EntityFramework">
       <HintPath>..\..\DLL\Debug\Base\EntityFramework.dll</HintPath>
     </Reference>
@@ -61,7 +50,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EWorkingHours.cs" />
+    <Compile Include="EWorkLog.cs" />
+    <Compile Include="EAttendance.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
