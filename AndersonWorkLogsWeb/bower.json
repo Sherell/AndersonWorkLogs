@@ -7,6 +7,7 @@
     "bootstrap": "3.3.7",
     "pnotify": "3.0.0",
     "moment": "2.19.1",
-    "angular": "v1.6.7-build.5500+sha.aa3f951"
+    "angular": "v1.6.7-build.5500+sha.aa3f951",
+    "angular-ui-select": "v0.19.8"
   }
 }

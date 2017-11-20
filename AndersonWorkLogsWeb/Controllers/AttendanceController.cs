@@ -1,5 +1,6 @@
 ﻿using AndersonWorkLogsFunction;
 using AndersonWorkLogsModel;
+using System;
 using System.Web.Mvc;
 
 namespace AndersonWorkLogsWeb.Controllers
@@ -16,7 +17,12 @@ namespace AndersonWorkLogsWeb.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            return View(new Attendance());
+            Attendance attendance = new Attendance()
+            {
+                TimeIn = DateTime.Now,
+                TimeOut = DateTime.Now
+            };
+            return View(attendance);
         }
 
         [HttpPost]

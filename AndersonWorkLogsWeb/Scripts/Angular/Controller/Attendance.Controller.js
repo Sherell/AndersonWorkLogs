@@ -1,64 +1,64 @@
-﻿(function () {
-    'use strict';
+﻿//(function () {
+//    'use strict';
 
-    angular
-        .module('App')
-        .controller('AttendanceController', AttendanceController);
+//    angular
+//        .module('App')
+//        .controller('AttendanceController', AttendanceController);
 
-    AttendanceController.$inject = ['$filter', '$window', 'AttendanceService'];
+//    AttendanceController.$inject = ['$filter', '$window', 'AttendanceService'];
 
-    function AttendanceController($filter, $window, AttendanceService) {
-        var vm = this;
+//    function AttendanceController($filter, $window, AttendanceService) {
+//        var vm = this;
 
-        vm.AttendanceId;
+//        vm.AttendanceId;
 
-        vm.Attendances = [];
+//        vm.Attendances = [];
 
-        vm.GoToUpdatePage = GoToUpdatePage;
-        vm.Initialise = Initialise;
+//        vm.GoToUpdatePage = GoToUpdatePage;
+//        vm.Initialise = Initialise;
 
-        vm.Delete = Delete;
+//        vm.Delete = Delete;
 
-        function GoToUpdatePage(attendanceId) {
-            $window.location.href = '../Attendance/Update/' + attendanceId;
-        }
+//        function GoToUpdatePage(attendanceId) {
+//            $window.location.href = '../Attendance/Update/' + attendanceId;
+//        }
 
-        function Initialise() {
-            Read();
-        }
+//        function Initialise() {
+//            Read();
+//        }
 
-        function Read() {
-            AttendanceService.Read()
-                .then(function (response) {
-                    vm.Attendances = response.data;
-                })
-                .catch(function (data, status) {
-                    new PNotify({
-                        title: status,
-                        text: data,
-                        type: 'error',
-                        hide: true,
-                        addclass: "stack-bottomright"
-                    });
+//        function Read() {
+//            AttendanceService.Read()
+//                .then(function (response) {
+//                    vm.Attendances = response.data;
+//                })
+//                .catch(function (data, status) {
+//                    new PNotify({
+//                        title: status,
+//                        text: data,
+//                        type: 'error',
+//                        hide: true,
+//                        addclass: "stack-bottomright"
+//                    });
 
-                });
-        }
+//                });
+//        }
 
-        function Delete(attendanceId) {
-            AttendanceService.Delete(attendanceId)
-                .then(function (response) {
-                    Read();
-                })
-                .catch(function (data, status) {
-                    new PNotify({
-                        title: status,
-                        text: data,
-                        type: 'error',
-                        hide: true,
-                        addclass: "stack-bottomright"
-                    });
-                });
-        }
+//        function Delete(attendanceId) {
+//            AttendanceService.Delete(attendanceId)
+//                .then(function (response) {
+//                    Read();
+//                })
+//                .catch(function (data, status) {
+//                    new PNotify({
+//                        title: status,
+//                        text: data,
+//                        type: 'error',
+//                        hide: true,
+//                        addclass: "stack-bottomright"
+//                    });
+//                });
+//        }
 
-    }
-})();
+//    }
+//})();
