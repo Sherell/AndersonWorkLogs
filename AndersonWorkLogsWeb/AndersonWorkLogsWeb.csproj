@@ -687,9 +687,17 @@
     <Content Include="bower_components\pnotify\dist\pnotify.mobile.js" />
     <Content Include="bower_components\pnotify\dist\pnotify.nonblock.js" />
     <Content Include="bower_components\pnotify\libtests\browserify\index.js" />
+    <Content Include="Content\Site.css">
+      <DependentUpon>Site.less</DependentUpon>
+    </Content>
+    <Content Include="Content\Site.min.css">
+      <DependentUpon>Site.css</DependentUpon>
+    </Content>
     <Content Include="Global.asax" />
+    <Content Include="Scripts\Angular\app.module.js" />
+    <Content Include="Scripts\Angular\Controller\WorkLog.Controller.js" />
     <Content Include="Scripts\Angular\Controller\Attendance.Controller.js" />
-    <Content Include="Scripts\app.module.js" />
+    <Content Include="Scripts\Angular\Service\WorkLog.Service.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -698,6 +706,7 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\UnityMvcActivator.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\WorkLogController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\AttendanceController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -883,6 +892,11 @@
     <Content Include="bower_components\angular-ui-select\LICENSE" />
     <Content Include="bower_components\angular-ui-select\package.json" />
     <Content Include="bower_components\angular-ui-select\README.md" />
+    <Content Include="Content\Site.less" />
+    <None Include="compilerconfig.json" />
+    <None Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />

@@ -28,10 +28,10 @@ namespace AndersonWorkLogsFunction
         #endregion
 
         #region READ
-        public WorkLog Read(int workLogId)
+        public List<WorkLog> Read(int attendanceId)
         {
-            EWorkLog eWorkLog = _iDWorkLog.Read<EWorkLog>(a => a.WorkLogId == workLogId);
-            return WorkLog(eWorkLog);
+            List<EWorkLog> eWorkLogs = _iDWorkLog.List<EWorkLog>(a => a.AttendanceId == attendanceId);
+            return Companies(eWorkLogs);
         }
 
         public List<WorkLog> Read()
