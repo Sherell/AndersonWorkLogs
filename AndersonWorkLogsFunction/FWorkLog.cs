@@ -17,13 +17,18 @@ namespace AndersonWorkLogsFunction
         }
 
         #region CREATE
-        public WorkLog Create(int createdBy, WorkLog workLog)
+        public void Create(int attendanceId, int createdBy, List<WorkLog> workLogs)
         {
-            EWorkLog eWorkLog = EWorkLog(workLog);
-            eWorkLog.CreatedDate = DateTime.Now;
-            eWorkLog.CreatedBy = createdBy;
-            eWorkLog = _iDWorkLog.Create(eWorkLog);
-            return (WorkLog(eWorkLog));
+            List<EWorkLog> eWorkLogs = EWorkLogs(workLogs);
+            List<EWorkLog> newEWorkLogs = eWorkLogs.Where(a => a.WorkLogId == 0).ToList();
+            newEWorkLogs.ToList().ForEach(a =>
+            {
+                a.CreatedDate = DateTime.Now;
+
+                a.AttendanceId = attendanceId;
+                a.CreatedBy = createdBy;
+            });
+            _iDWorkLog.Create(newEWorkLogs);
         }
         #endregion
 
@@ -31,36 +36,40 @@ namespace AndersonWorkLogsFunction
         public List<WorkLog> Read(int attendanceId)
         {
             List<EWorkLog> eWorkLogs = _iDWorkLog.List<EWorkLog>(a => a.AttendanceId == attendanceId);
-            return Companies(eWorkLogs);
-        }
-
-        public List<WorkLog> Read()
-        {
-            List<EWorkLog> eWorkLogs = _iDWorkLog.List<EWorkLog>(a => true);
-            return Companies(eWorkLogs);
+            return WorkLogs(eWorkLogs);
         }
         #endregion
 
         #region UPDATE
-        public WorkLog Update(int updatedBy, WorkLog workLog)
-        {
-            EWorkLog eWorkLog = EWorkLog(workLog);
-            eWorkLog.UpdatedDate = DateTime.Now;
-            eWorkLog.UpdatedBy = updatedBy;
-            eWorkLog = _iDWorkLog.Update(eWorkLog);
-            return (WorkLog(eWorkLog));
-        }
         #endregion
 
         #region DELETE
-        public void Delete(int workLogId)
+        public void Delete(List<WorkLog> workLogs)
         {
-            _iDWorkLog.Delete<EWorkLog>(a => a.WorkLogId == workLogId);
+            List<EWorkLog> eWorkLogs = EWorkLogs(workLogs);
+            List<EWorkLog> oldEWorkLogs = eWorkLogs.Where(a => a.WorkLogId != 0).ToList();
+            _iDWorkLog.Delete(oldEWorkLogs);
         }
         #endregion
 
         #region OTHER FUNCTION
-        private List<WorkLog> Companies(List<EWorkLog> eWorkLogs)
+        private List<EWorkLog> EWorkLogs(List<WorkLog> workLogs)
+        {
+            return workLogs.Select(a => new EWorkLog
+            {
+                CreatedDate = a.CreatedDate,
+                UpdatedDate = a.UpdatedDate,
+                AttendanceId = a.AttendanceId,
+
+                CreatedBy = a.CreatedBy,
+                UpdatedBy = a.UpdatedBy,
+                WorkLogId = a.WorkLogId,
+
+                WorkDone = a.WorkDone
+            }).ToList();
+        }
+
+        private List<WorkLog> WorkLogs(List<EWorkLog> eWorkLogs)
         {
             return eWorkLogs.Select(a => new WorkLog
             {

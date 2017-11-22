@@ -11,5 +11,6 @@ namespace AndersonWorkLogsModel
         public int AttendanceId { get; set; }
 
         public virtual ICollection<WorkLog> WorkLogs { get; set; }
+        public virtual ICollection<WorkLog> DeletedWorkLogs { get; set; }
     }
 }

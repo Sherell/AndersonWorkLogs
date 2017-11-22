@@ -37,7 +37,7 @@ namespace AndersonWorkLogsFunction
         public List<Attendance> Read()
         {
             List<EAttendance> eAttendances = _iDAttendance.List<EAttendance>(a => true);
-            return Companies(eAttendances);
+            return Attendances(eAttendances);
         }
         #endregion
 
@@ -60,7 +60,7 @@ namespace AndersonWorkLogsFunction
         #endregion
 
         #region OTHER FUNCTION
-        private List<Attendance> Companies(List<EAttendance> eAttendances)
+        private List<Attendance> Attendances(List<EAttendance> eAttendances)
         {
             return eAttendances.Select(a => new Attendance
             {

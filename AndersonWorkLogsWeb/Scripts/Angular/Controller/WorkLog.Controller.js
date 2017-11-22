@@ -12,9 +12,22 @@
 
         vm.AttendanceId;
 
+        vm.WorkLog = {
+            WorkDone: '',
+        };
+
         vm.WorkLogs = [];
+        vm.DeletedWorkLogs = [];
+
+        vm.Create = Create;
 
         vm.Initialise = Initialise;
+
+        vm.Delete = Delete;
+
+        function Create() {
+            vm.WorkLogs.push(vm.WorkLog);
+        }
 
         function Initialise(attendanceId) {
             vm.AttendanceId = attendanceId
@@ -37,6 +50,12 @@
 
                 });
         }
+
+        function Delete(workLog) {
+            vm.DeletedWorkLogs.push(workLog);
+            vm.WorkLogs.remove(workLog);
+        }
+
 
     }
 })();
