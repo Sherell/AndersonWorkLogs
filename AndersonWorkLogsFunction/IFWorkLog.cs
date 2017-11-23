@@ -6,20 +6,18 @@ namespace AndersonWorkLogsFunction
     public interface IFWorkLog
     {
         #region CREATE
-        WorkLog Create(int createdBy, WorkLog workLog);
+        void Create(int attendanceId, int createdBy, List<WorkLog> workLogs);
         #endregion
 
         #region READ
-        WorkLog Read(int workLogId);
-        List<WorkLog> Read();
+        List<WorkLog> Read(int attendanceId);
         #endregion
 
         #region UPDATE
-        WorkLog Update(int updatedBy, WorkLog workLog);
         #endregion
 
         #region DELETE
-        void Delete(int WorkLogId);
+        void Delete(List<WorkLog> workLogs);
         #endregion
     }
 
