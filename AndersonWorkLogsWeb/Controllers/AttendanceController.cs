@@ -8,9 +8,11 @@ namespace AndersonWorkLogsWeb.Controllers
     public class AttendanceController : BaseController
     {
         private IFAttendance _iFAttendance;
-        public AttendanceController(IFAttendance iFAttendance)
+        private IFWorkLog _iFWorkLog;
+        public AttendanceController(IFAttendance iFAttendance, IFWorkLog iFWorkLog)
         {
             _iFAttendance = iFAttendance;
+            _iFWorkLog = iFWorkLog;
         }
 
         #region Create
@@ -29,6 +31,7 @@ namespace AndersonWorkLogsWeb.Controllers
         public ActionResult Create(Attendance attendance)
         {
             var createdAttendance = _iFAttendance.Create(UserId, attendance);
+            _iFWorkLog.Create(createdAttendance.AttendanceId, UserId, attendance.WorkLogs);
             return RedirectToAction("Index");
         }
         #endregion
@@ -58,6 +61,8 @@ namespace AndersonWorkLogsWeb.Controllers
         public ActionResult Update(Attendance attendance)
         {
             var createdAttendance = _iFAttendance.Update(UserId, attendance);
+            _iFWorkLog.Create(createdAttendance.AttendanceId, UserId, attendance.WorkLogs);
+            _iFWorkLog.Delete(attendance.DeletedWorkLogs);
             return RedirectToAction("Index");
         }
         #endregion

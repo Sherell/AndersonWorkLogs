@@ -19,6 +19,9 @@ namespace AndersonWorkLogsFunction
         #region CREATE
         public void Create(int attendanceId, int createdBy, List<WorkLog> workLogs)
         {
+            if (!workLogs?.Any() ?? true)
+                return;
+
             List<EWorkLog> eWorkLogs = EWorkLogs(workLogs);
             List<EWorkLog> newEWorkLogs = eWorkLogs.Where(a => a.WorkLogId == 0).ToList();
             newEWorkLogs.ToList().ForEach(a =>
@@ -46,9 +49,12 @@ namespace AndersonWorkLogsFunction
         #region DELETE
         public void Delete(List<WorkLog> workLogs)
         {
+            if (!workLogs?.Any() ?? true)
+                return;
+
             List<EWorkLog> eWorkLogs = EWorkLogs(workLogs);
-            List<EWorkLog> oldEWorkLogs = eWorkLogs.Where(a => a.WorkLogId != 0).ToList();
-            _iDWorkLog.Delete(oldEWorkLogs);
+            List<int> oldEWorkLogIds = eWorkLogs.Where(a => a.WorkLogId != 0).Select(a=> a.WorkLogId).ToList();
+            _iDWorkLog.Delete<EWorkLog>(a => oldEWorkLogIds.Contains(a.WorkLogId));
         }
         #endregion
 

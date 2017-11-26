@@ -22,6 +22,7 @@
         vm.Create = Create;
 
         vm.Initialise = Initialise;
+        vm.IsExisting = IsExisting;
 
         vm.Delete = Delete;
 
@@ -32,6 +33,10 @@
         function Initialise(attendanceId) {
             vm.AttendanceId = attendanceId
             Read();
+        }
+
+        function IsExisting(workLog) {
+            return (workLog.WorkLogId != null);
         }
 
         function Read() {
@@ -53,7 +58,9 @@
 
         function Delete(workLog) {
             vm.DeletedWorkLogs.push(workLog);
-            vm.WorkLogs.remove(workLog);
+            var index = vm.WorkLogs.indexOf(workLog);
+            if (index >= 0)
+                vm.WorkLogs.splice(index, 1);
         }
 
 
