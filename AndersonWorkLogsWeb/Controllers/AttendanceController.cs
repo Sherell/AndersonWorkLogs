@@ -23,7 +23,7 @@ namespace AndersonWorkLogsWeb.Controllers
             {
                 TimeIn = DateTime.Now,
                 TimeOut = DateTime.Now
-            };
+            }; 
             return View(attendance);
         }
 
