@@ -15,6 +15,7 @@
                 <thead>
                     <tr class="thead-inverse">
                         <th>AttendanceId</th>
+                        <th>UserName</th>
                         <th>TimeIn</th>
                         <th>TimeOut</th>
                         <th>Actions</th>
@@ -23,6 +24,7 @@
                 <tbody>
                     <tr class="clickableRow" ng-repeat="attendance in model.Attendances" ng-click="$event.originalEvent.dropdown || model.GoToUpdatePage(attendance.AttendanceId)">
                         <td><span ng-bind="attendance.AttendanceId"></span></td>
+                        <td><span ng-bind="attendance.Username"></span></td>
                         <td><span ng-bind="attendance.TimeIn"></span></td>
                         <td><span ng-bind="attendance.TimeOut"></span></td>
                         <td ng-click="$event.originalEvent.dropdown = true">
@@ -33,6 +35,7 @@
                                 <ul class="dropdown-menu">
                                     <li><a href="#" ng-click="model.GoToUpdatePage(attendance.AttendanceId)">Edit</a></li>
                                     <li><a href="#" ng-click="model.Delete(attendance.AttendanceId)">Delete</a></li>
+                                  
                                 </ul>
                             </div>
                         </td>
