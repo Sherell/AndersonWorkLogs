@@ -10,6 +10,7 @@ namespace AndersonWorkLogsModel
         public DateTime TimeIn { get; set; }
         public DateTime TimeOut { get; set; }
         public int AttendanceId { get; set; }
+        public int UserId { get; set; }
 
         public string TimeInString => TimeIn.ToHtml5Date();
         public string TimeOutString => TimeOut.ToHtml5Date();
