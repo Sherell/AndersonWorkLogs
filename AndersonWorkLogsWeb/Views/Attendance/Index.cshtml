@@ -25,7 +25,7 @@
                 <tbody>
                     <tr class="clickableRow" ng-repeat="attendance in model.Attendances" ng-click="$event.originalEvent.dropdown || model.GoToUpdatePage(attendance.AttendanceId)" ng-init= "model.UpdateUser(attendance)">
                         <td><span ng-bind="attendance.AttendanceId"></span></td>
-                        <td><span ng-bind="attendance.Username"></span></td>
+                        <td><span ng-bind="attendance.User.Username"></span></td>
                         <td><span ng-bind="attendance.TimeIn"></span></td>
                         <td><span ng-bind="attendance.TimeOut"></span></td>
                         <td ng-click="$event.originalEvent.dropdown = true">

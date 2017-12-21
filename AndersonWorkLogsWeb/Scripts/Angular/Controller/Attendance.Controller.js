@@ -69,8 +69,9 @@
         }
 
         function UpdateUser(attendance) {
-            angular.forEach(vm.Attendances, function (attendances) {
-                attendances.Users = $filter('filter')(vm.Users, { UserId: attendances.UserId })[0];
+            angular.forEach(vm.Attendances, function (attendance) {
+                attendance.User = $filter('filter')(vm.Users, { UserId: attendance.CreatedBy })[0];
+                console.log('s');
             });
         }
 
