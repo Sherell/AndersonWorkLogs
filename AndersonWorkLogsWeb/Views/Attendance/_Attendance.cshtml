@@ -11,9 +11,12 @@
     <label for="TimeOut">TimeOut</label>
     <input type="datetime-local" class="form-control" id="TimeOut" name="TimeOut" placeholder="TimeOut" value="@Model.TimeOutString">
 </div>
-<div class="form-group">
-    <input type="submit" class="btn btn-primary" value="Submit" />
-</div>
+@if (Model.CreatedBy == Model.UserId)
+{
+    <div class="form-group">
+        <input type="submit" class="btn btn-primary" value="Submit" />
+    </div>
+}
 
 <div ng-controller="WorkLogController as model" ng-init="model.Initialise(@Model.AttendanceId)">
     <div class="form-group"  ng-repeat="workLog in model.WorkLogs track by $index">
@@ -21,11 +24,14 @@
             <div class="col-sm-offset-1 col-sm-7">
                 <input class="form-control" ng-readonly="model.IsExisting(workLog)" name="WorkLogs[{{$index}}].WorkDone" placeholder="WorkDone" ng-value="workLog.WorkDone">
             </div>
-            <div class="col-sm-4">
-                <button type="button" ng-click="model.Delete(workLog)" class="btn btn-primary">
-                    <i class="fa fa-trash-o" aria-hidden="true"></i>
-                </button>
-            </div>
+            @if (Model.CreatedBy == Model.UserId)
+            {
+                <div class="col-sm-4">
+                    <button type="button" ng-click="model.Delete(workLog)" class="btn btn-primary">
+                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                    </button>
+                </div>
+            }
         </div>
         <input type="hidden" name="WorkLogs[{{$index}}].WorkLogId" ng-value="workLog.WorkLogId" />
     </div>
@@ -34,5 +40,8 @@
         <input type="hidden" name="DeletedWorkLogs[{{$index}}].WorkLogId" ng-value="deletedWorkLog.WorkLogId" />
         <input type="hidden" name="DeletedWorkLogs[{{$index}}].WorkDone" ng-value="deletedWorkLog.WorkDone" />
     </div>
-    <input type="button" ng-click="model.Create()" class="btn btn-primary" value="Add Work Done" />
+    @if (Model.CreatedBy == Model.UserId)
+    {
+        <input type="button" ng-click="model.Create()" class="btn btn-primary" value="Add Work Done" />
+    }
 </div>

@@ -47,7 +47,8 @@ namespace AndersonWorkLogsFunction
             EAttendance eAttendance = EAttendance(attendance);
             eAttendance.UpdatedDate = DateTime.Now;
             eAttendance.UpdatedBy = updatedBy;
-            eAttendance = _iDAttendance.Update(eAttendance);
+            if(eAttendance.CreatedBy == updatedBy)
+                eAttendance = _iDAttendance.Update(eAttendance);
             return (Attendance(eAttendance));
         }
         #endregion

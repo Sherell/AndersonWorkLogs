@@ -18,6 +18,7 @@ namespace AndersonWorkLogsFunction
 
         #region DELETE
         void Delete(List<WorkLog> workLogs);
+        void Delete(int attendanceId);
         #endregion
     }
 

@@ -43,19 +43,7 @@
     <OutputPath>bin\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="AccountsData, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="AccountsFunction">
-      <HintPath>..\..\DLL\Release\Accounts\AccountsFunction.dll</HintPath>
-    </Reference>
-    <Reference Include="AccountsModel">
-      <HintPath>..\..\DLL\Release\Accounts\AccountsModel.dll</HintPath>
-    </Reference>
-    <Reference Include="AccountsWebAuthentication">
-      <HintPath>..\..\DLL\Release\Accounts\AccountsWebAuthentication.dll</HintPath>
-    </Reference>
+
     <Reference Include="AndersonCRMFunction, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="AndersonCRMModel, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
