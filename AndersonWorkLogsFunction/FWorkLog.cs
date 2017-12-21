@@ -51,10 +51,15 @@ namespace AndersonWorkLogsFunction
         {
             if (!workLogs?.Any() ?? true)
                 return;
-
+            
             List<EWorkLog> eWorkLogs = EWorkLogs(workLogs);
             List<int> oldEWorkLogIds = eWorkLogs.Where(a => a.WorkLogId != 0).Select(a=> a.WorkLogId).ToList();
             _iDWorkLog.Delete<EWorkLog>(a => oldEWorkLogIds.Contains(a.WorkLogId));
+        }
+
+        public void Delete(int attendanceId)
+        {
+            _iDWorkLog.Delete<EWorkLog>(a => a.AttendanceId == attendanceId);
         }
         #endregion
 

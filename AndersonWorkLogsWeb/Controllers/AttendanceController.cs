@@ -23,7 +23,7 @@ namespace AndersonWorkLogsWeb.Controllers
             {
                 TimeIn = DateTime.Now,
                 TimeOut = DateTime.Now
-            };
+            }; 
             return View(attendance);
         }
 
@@ -54,15 +54,20 @@ namespace AndersonWorkLogsWeb.Controllers
         [HttpGet]
         public ActionResult Update(int id)
         {
-            return View(_iFAttendance.Read(id));
+            var attendance = _iFAttendance.Read(id);
+            attendance.UserId = UserId;
+            return View(attendance);
         }
 
         [HttpPost]
         public ActionResult Update(Attendance attendance)
         {
             var createdAttendance = _iFAttendance.Update(UserId, attendance);
-            _iFWorkLog.Create(createdAttendance.AttendanceId, UserId, attendance.WorkLogs);
-            _iFWorkLog.Delete(attendance.DeletedWorkLogs);
+            if (attendance.CreatedBy == UserId)
+            {
+                _iFWorkLog.Create(createdAttendance.AttendanceId, UserId, attendance.WorkLogs);
+                _iFWorkLog.Delete(attendance.DeletedWorkLogs);
+            }
             return RedirectToAction("Index");
         }
         #endregion
@@ -71,6 +76,7 @@ namespace AndersonWorkLogsWeb.Controllers
         [HttpDelete]
         public JsonResult Delete(int id)
         {
+            _iFWorkLog.Delete(id);
             _iFAttendance.Delete(id);
             return Json(string.Empty);
         }

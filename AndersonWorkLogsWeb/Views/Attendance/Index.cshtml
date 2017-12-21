@@ -8,6 +8,7 @@
         <div class="col-sm-4">
             <a href="../Attendance/Create" class="btn btn-default">Create</a>
         </div>
+
     </div>
     <div class="row">
         <div class="col-sm-12">
@@ -15,14 +16,16 @@
                 <thead>
                     <tr class="thead-inverse">
                         <th>AttendanceId</th>
+                        <th>UserName</th>
                         <th>TimeIn</th>
                         <th>TimeOut</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="clickableRow" ng-repeat="attendance in model.Attendances" ng-click="$event.originalEvent.dropdown || model.GoToUpdatePage(attendance.AttendanceId)">
+                    <tr class="clickableRow" ng-repeat="attendance in model.Attendances" ng-click="$event.originalEvent.dropdown || model.GoToUpdatePage(attendance.AttendanceId)" ng-init= "model.UpdateUser(attendance)">
                         <td><span ng-bind="attendance.AttendanceId"></span></td>
+                        <td><span ng-bind="attendance.Username"></span></td>
                         <td><span ng-bind="attendance.TimeIn"></span></td>
                         <td><span ng-bind="attendance.TimeOut"></span></td>
                         <td ng-click="$event.originalEvent.dropdown = true">
@@ -33,6 +36,7 @@
                                 <ul class="dropdown-menu">
                                     <li><a href="#" ng-click="model.GoToUpdatePage(attendance.AttendanceId)">Edit</a></li>
                                     <li><a href="#" ng-click="model.Delete(attendance.AttendanceId)">Delete</a></li>
+                                  
                                 </ul>
                             </div>
                         </td>
