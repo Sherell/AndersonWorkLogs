@@ -1,10 +1,10 @@
-﻿@*<input type="hidden" name="UserId" value="@Model.UserId" />
+﻿@*input type="hidden" name="UserId" value="@Model.UserId" />
 @{
     Html.RenderPartial("_AuditColumns");
 }
 <div class="form-group">
     <label for="IsActive">IsActive</label>
-    <input @(Model.IsActiv  e ? "checked" : "") id="IsActive" name="IsActive" type="checkbox" value="true">
+    <input @(Model.IsActive ? "checked" : "") id="IsActive" name="IsActive" type="checkbox" value="true">
 </div>
 <div class="form-group" ng-controller="EmployeeController as model" ng-init="model.Initialise(@Model.EmployeeId)">
     <label for="EmployeeId">Employee</label>
@@ -23,7 +23,6 @@
 <div class="form-group">
     <label for="Username">Username</label>
     <input type="text" class="form-control" id="Username" name="Username" placeholder="Username" value="@Model.Username">
-
 
 </div>
 <div class="form-group" ng-controller="RoleController as model" ng-init="model.Initialise(@Model.UserId)">

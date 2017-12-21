@@ -13,10 +13,12 @@
          
         vm.AttendanceId;
 
-        vm.Attendances = [];
         vm.Users = [];
+        vm.Attendances = [];
+
 
         vm.GoToUpdatePage = GoToUpdatePage;
+        vm.UpdateUser = UpdateUser;
         vm.Initialise = Initialise;
 
         vm.Delete = Delete;
@@ -27,6 +29,7 @@
 
         function Initialise() {
             Read();
+            //ReadUsers();
         }
 
         function Read() {
@@ -65,9 +68,9 @@
                 });
         }
 
-        function UpdateUser() {
+        function UpdateUser(attendance) {
             angular.forEach(vm.Attendances, function (attendances) {
-                attendances.User = $filter('filter')(vm.Users, { UserId: attendances.UserId })[0];
+                attendances.Users = $filter('filter')(vm.Users, { UserId: attendances.UserId })[0];
             });
         }
 
