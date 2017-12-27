@@ -1,5 +1,7 @@
 using AccountsData;
 using AccountsFunction;
+using AndersonCRMData;
+using AndersonCRMFunction;
 using AndersonWorkLogsData;
 using AndersonWorkLogsFunction;
 using System;
@@ -52,12 +54,14 @@ namespace AndersonWorkLogsWeb
             container.RegisterType<IDAttendance, DAttendance>(new PerRequestLifetimeManager());
             container.RegisterType<IDWorkLog, DWorkLog>(new PerRequestLifetimeManager());
             container.RegisterType<IDUser, DUser>(new PerRequestLifetimeManager());
+            container.RegisterType<IDEmployee, DEmployee>(new PerRequestLifetimeManager());
             #endregion
 
             #region Function
             container.RegisterType<IFAttendance, FAttendance>(new PerRequestLifetimeManager());
             container.RegisterType<IFWorkLog, FWorkLog>(new PerRequestLifetimeManager());
             container.RegisterType<IFUser, FUser>(new PerRequestLifetimeManager());
+            container.RegisterType<IFEmployee, FEmployee>(new PerRequestLifetimeManager());
             #endregion
         }
     }

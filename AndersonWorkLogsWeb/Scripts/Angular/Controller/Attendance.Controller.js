@@ -5,20 +5,16 @@
         .module('App')
         .controller('AttendanceController', AttendanceController);
 
-    AttendanceController.$inject = ['$filter', '$window', 'AttendanceService','UserService'];
+    AttendanceController.$inject = ['$filter', '$window', 'AttendanceService','UserService', 'EmployeeService'];
 
-    function AttendanceController($filter, $window, AttendanceService, UserService) {
+    function AttendanceController($filter, $window, AttendanceService, UserService, EmployeeService) {
         var vm = this;
-
-         
-        vm.AttendanceId;
-
-        vm.Users = [];
+        
         vm.Attendances = [];
-
-
+        vm.Users = [];
+        vm.Employees = [];
+        
         vm.GoToUpdatePage = GoToUpdatePage;
-        vm.UpdateUser = UpdateUser;
         vm.Initialise = Initialise;
 
         vm.Delete = Delete;
@@ -37,6 +33,7 @@
                 .then(function (response) {
                     vm.Attendances = response.data;
                     ReadUsers();
+                    ReadEmployees();
                 })
                 .catch(function (data, status) {
                     new PNotify({
@@ -71,7 +68,32 @@
         function UpdateUser(attendance) {
             angular.forEach(vm.Attendances, function (attendance) {
                 attendance.User = $filter('filter')(vm.Users, { UserId: attendance.CreatedBy })[0];
-                console.log('s');
+                console.log('sU');
+            });
+        }
+
+        function ReadEmployees() {
+            EmployeeService.Read()
+                .then(function (response) {
+                    vm.Employees = response.data;
+                    UpdateEmployee();
+                })
+                .catch(function (data, status) {
+                    new PNotify({
+                        title: status,
+                        text: data,
+                        type: 'error',
+                        hide: true,
+                        addclass: "stack-bottomright"
+                    });
+
+                });
+        }
+
+        function UpdateEmployee(attendance) {
+            angular.forEach(vm.Attendances, function (attendance) {
+                attendance.Employee = $filter('filter')(vm.Employees, { EmployeeId: attendance.User.EmployeeId })[0];
+                console.log('sE');
             });
         }
 
