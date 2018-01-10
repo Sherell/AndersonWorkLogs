@@ -70,6 +70,20 @@ namespace AndersonWorkLogsWeb.Controllers
             }
             return RedirectToAction("Index");
         }
+
+        [HttpPost]
+        public JsonResult Approve(int id)
+        {
+            try
+            {
+                _iFAttendance.Approve(UserId, id);
+                return Json(true);
+            }
+            catch
+            {
+                return Json(true);
+            }
+        }
         #endregion
 
         #region Delete

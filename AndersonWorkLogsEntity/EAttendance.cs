@@ -11,6 +11,7 @@ namespace AndersonWorkLogsEntity
     {
         public DateTime TimeIn { get; set; }
         public DateTime TimeOut { get; set; }
+        public DateTime? ApprovedDate { get; set; }
 
         [NotMapped]
         public double Hours => (TimeOut - TimeIn).TotalHours;
@@ -18,6 +19,8 @@ namespace AndersonWorkLogsEntity
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int AttendanceId { get; set; }
+        public int ApprovedBy { get; set; }
+        public int ManagerEmployeeId { get; set; }
 
         public virtual ICollection<EWorkLog> WorkLogs { get; set; }
     }

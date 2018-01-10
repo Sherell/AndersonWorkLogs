@@ -14,9 +14,9 @@
         vm.Users = [];
         vm.Employees = [];
         
-        vm.GoToUpdatePage = GoToUpdatePage;
         vm.Initialise = Initialise;
-
+        vm.GoToUpdatePage = GoToUpdatePage;
+        vm.Approve = Approve;
         vm.Delete = Delete;
 
         function GoToUpdatePage(attendanceId) {
@@ -25,7 +25,6 @@
 
         function Initialise() {
             Read();
-            //ReadUsers();
         }
 
         function Read() {
@@ -65,10 +64,9 @@
                 });
         }
 
-        function UpdateUser(attendance) {
+        function UpdateUser() {
             angular.forEach(vm.Attendances, function (attendance) {
                 attendance.User = $filter('filter')(vm.Users, { UserId: attendance.CreatedBy })[0];
-                console.log('sU');
             });
         }
 
@@ -90,11 +88,21 @@
                 });
         }
 
-        function UpdateEmployee(attendance) {
+        function UpdateEmployee() {
             angular.forEach(vm.Attendances, function (attendance) {
                 attendance.Employee = $filter('filter')(vm.Employees, { EmployeeId: attendance.User.EmployeeId })[0];
-                console.log('sE');
             });
+        }
+
+        function Approve(id) {
+            AttendanceService.Approve(id)
+                .then(function (response) {
+                    if (response.data === true) {
+                        Read();
+                    }
+                })
+                .catch(function (data, status) {
+                });
         }
 
         function Delete(attendanceId) {
@@ -112,6 +120,5 @@
                     });
                 });
         }
-
     }
 })();
