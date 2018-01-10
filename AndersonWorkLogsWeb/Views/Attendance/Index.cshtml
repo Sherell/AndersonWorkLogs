@@ -22,6 +22,9 @@
                         <th>FirstName</th>
                         <th>MiddleName</th>
                         <th>LastName</th>
+                        <th>ManagerId</th>
+                        <th>ApprovedDate</th>
+                        <th>Approved</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -34,15 +37,18 @@
                         <td><span ng-bind="attendance.Employee.FirstName"></span></td>
                         <td><span ng-bind="attendance.Employee.MiddleName"></span></td>
                         <td><span ng-bind="attendance.Employee.LastName"></span></td>
+                        <td><span ng-bind="attendance.ManagerEmployeeId"></span></td>
+                        <td><span ng-bind="attendance.ApprovedDate"></span></td>
+                        <td><span ng-bind="attendance.Approved"></span></td>
                         <td ng-click="$event.originalEvent.dropdown = true">
                             <div class="dropdown">
                                 <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
                                     <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu">
+                                    <li><a href="#" ng-click="model.Approve(attendance.AttendanceId)">Approve</a></li>
                                     <li><a href="#" ng-click="model.GoToUpdatePage(attendance.AttendanceId)">Edit</a></li>
                                     <li><a href="#" ng-click="model.Delete(attendance.AttendanceId)">Delete</a></li>
-                                  
                                 </ul>
                             </div>
                         </td>

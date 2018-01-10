@@ -937,7 +937,6 @@
     <Content Include="Views\Attendance\Create.cshtml" />
     <Content Include="Views\Attendance\Update.cshtml" />
     <Content Include="Views\Attendance\Index.cshtml" />
-    <Content Include="Views\Attendance\_User.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
