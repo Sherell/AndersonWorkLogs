@@ -2,6 +2,46 @@
 @{
     ViewBag.Title = "Index";
 }
+<body>
+    <div class="pull-right">
+        <div class="form-group">
+            <div class="col-md-12">
+                <b><font size="3"><span id="CurrentDate"></span></font></b>
+            </div>
+        </div>
 
-<h2>Index</h2>
+        <div class="form-group">
+            <div class="col-md-12">
+                <b><font size="3"><span id="CurrentTime"></span></font></b>
+            </div>
+        </div>
+    </div>
 
+    <script>
+        var displaytime = setInterval(function () { Time() }, 0);
+        var displaydate = setInterval(function () { Time() }, 0);
+
+        function Time() {
+            var date = new Date();
+            var currentdate = date.toDateString();
+            var time = date.toLocaleTimeString();
+            document.getElementById("CurrentTime").innerHTML = time;
+            document.getElementById("CurrentDate").innerHTML = currentdate;
+        }
+    </script>
+</body>
+
+<br />
+
+<div class="logo">
+
+    <img src="~/bower_components/angular-ui-select/docs/assets/WorkLogs.png" alt="wqwqwe" width="510" height="150">
+
+</div>
+<style>
+    .logo {
+        text-align: center;
+        margin-top: 10%;
+        padding: 10px;
+    }
+</style>

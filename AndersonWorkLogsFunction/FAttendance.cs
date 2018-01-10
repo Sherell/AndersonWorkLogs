@@ -70,6 +70,8 @@ namespace AndersonWorkLogsFunction
                 TimeIn = a.TimeIn,
                 TimeOut = a.TimeOut,
 
+                Hours = a.Hours,
+
                 AttendanceId = a.AttendanceId,
                 CreatedBy = a.CreatedBy,
                 UpdatedBy = a.UpdatedBy
