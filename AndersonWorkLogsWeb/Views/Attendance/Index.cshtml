@@ -21,13 +21,10 @@
                         <th>TimeOut</th>
                         <th>TotalHours</th>
                         <th>FullName</th>
-                        @*<th>FirstName</th>
-                        <th>MiddleName</th>*@
                         <th>ManagerId</th>
                         <th>ApprovedBy</th>
                         <th>ApprovedDate</th>
                         <th>Approved</th>
-                        @*<th>LastName</th>*@
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -43,9 +40,6 @@
                         <td><span ng-bind="attendance.ApprovedBy"></span></td>
                         <td><span ng-bind="attendance.ApprovedDate"></span></td>
                         <td><span ng-bind="attendance.Approved"></span></td>
-                        @*<td><span ng-bind="attendance.Employee.FirstName"></span></td>
-                        <td><span ng-bind="attendance.Employee.MiddleName"></span></td>
-                        <td><span ng-bind="attendance.Employee.LastName"></span></td>*@
                         <td ng-click="$event.originalEvent.dropdown = true">
                             <div class="dropdown">
                                 <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
