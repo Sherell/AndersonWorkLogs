@@ -51,6 +51,17 @@ namespace AndersonWorkLogsFunction
                 eAttendance = _iDAttendance.Update(eAttendance);
             return (Attendance(eAttendance));
         }
+
+        public void Approve(int approvedBy, int attendanceId)
+        {
+            EAttendance eAttendance = _iDAttendance.Read<EAttendance>(a => a.AttendanceId == attendanceId);
+            eAttendance.UpdatedDate = DateTime.Now;
+            eAttendance.UpdatedBy = approvedBy;
+
+            eAttendance.ApprovedDate = DateTime.Now;
+            eAttendance.ApprovedBy = approvedBy;
+            _iDAttendance.Update(eAttendance);
+        }
         #endregion
 
         #region DELETE
@@ -69,8 +80,13 @@ namespace AndersonWorkLogsFunction
                 UpdatedDate = a.UpdatedDate,
                 TimeIn = a.TimeIn,
                 TimeOut = a.TimeOut,
+                ApprovedDate = a.ApprovedDate,
+
+                Hours = a.Hours,
 
                 AttendanceId = a.AttendanceId,
+                ApprovedBy = a.ApprovedBy,
+                ManagerEmployeeId = a.ManagerEmployeeId,
                 CreatedBy = a.CreatedBy,
                 UpdatedBy = a.UpdatedBy
             }).ToList();
@@ -84,8 +100,11 @@ namespace AndersonWorkLogsFunction
                 UpdatedDate = attendance.UpdatedDate,
                 TimeIn = attendance.TimeIn,
                 TimeOut = attendance.TimeOut,
+                ApprovedDate = attendance.ApprovedDate,
 
                 AttendanceId = attendance.AttendanceId,
+                ApprovedBy = attendance.ApprovedBy,
+                ManagerEmployeeId = attendance.ManagerEmployeeId,
                 CreatedBy = attendance.CreatedBy,
                 UpdatedBy = attendance.UpdatedBy
             };
@@ -101,6 +120,8 @@ namespace AndersonWorkLogsFunction
                 TimeOut = eAttendance.TimeOut,
 
                 AttendanceId = eAttendance.AttendanceId,
+                ApprovedBy = eAttendance.ApprovedBy,
+                ManagerEmployeeId = eAttendance.ManagerEmployeeId,
                 CreatedBy = eAttendance.CreatedBy,
                 UpdatedBy = eAttendance.UpdatedBy
             };

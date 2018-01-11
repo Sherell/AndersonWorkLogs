@@ -10,6 +10,7 @@
     function AttendanceService($http) {
         return {
             Read: Read,
+            Approve: Approve,
             Delete: Delete
         }
 
@@ -17,6 +18,14 @@
             return $http({
                 method: 'POST',
                 url: '/Attendance/Read',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            });
+        }
+
+        function Approve(attendanceId) {
+            return $http({
+                method: 'POST',
+                url: '/Attendance/Approve/' + attendanceId,
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             });
         }
