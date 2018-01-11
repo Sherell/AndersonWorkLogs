@@ -91,6 +91,7 @@
         function UpdateEmployee() {
             angular.forEach(vm.Attendances, function (attendance) {
                 attendance.Employee = $filter('filter')(vm.Employees, { EmployeeId: attendance.User.EmployeeId })[0];
+                attendance.Employee.FullName = attendance.Employee.LastName + ", " + attendance.Employee.FirstName + " " + attendance.Employee.MiddleName;
             });
         }
 
