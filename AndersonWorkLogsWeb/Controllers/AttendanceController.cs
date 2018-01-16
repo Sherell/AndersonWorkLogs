@@ -46,7 +46,7 @@ namespace AndersonWorkLogsWeb.Controllers
         [HttpPost]
         public JsonResult Read()
         {
-            return Json(_iFAttendance.Read());
+            return Json(_iFAttendance.Read(UserId));
         }
         #endregion
 
@@ -54,7 +54,7 @@ namespace AndersonWorkLogsWeb.Controllers
         [HttpGet]
         public ActionResult Update(int id)
         {
-            var attendance = _iFAttendance.Read(id);
+            var attendance = _iFAttendance.ReadId(id);
             attendance.UserId = UserId;
             return View(attendance);
         }
@@ -62,9 +62,9 @@ namespace AndersonWorkLogsWeb.Controllers
         [HttpPost]
         public ActionResult Update(Attendance attendance)
         {
-            var createdAttendance = _iFAttendance.Update(UserId, attendance);
-            if (attendance.CreatedBy == UserId)
+            if (attendance.CreatedBy == UserId && !attendance.Approved)
             {
+                var createdAttendance = _iFAttendance.Update(UserId, attendance);
                 _iFWorkLog.Create(createdAttendance.AttendanceId, UserId, attendance.WorkLogs);
                 _iFWorkLog.Delete(attendance.DeletedWorkLogs);
             }

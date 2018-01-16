@@ -28,15 +28,15 @@ namespace AndersonWorkLogsFunction
         #endregion
 
         #region READ
-        public Attendance Read(int attendanceId)
+        public Attendance ReadId(int attendanceId)
         {
             EAttendance eAttendance = _iDAttendance.Read<EAttendance>(a => a.AttendanceId == attendanceId);
             return Attendance(eAttendance);
         }
 
-        public List<Attendance> Read()
+        public List<Attendance> Read(int userId)
         {
-            List<EAttendance> eAttendances = _iDAttendance.List<EAttendance>(a => true);
+            List<EAttendance> eAttendances = _iDAttendance.List<EAttendance>(a => a.CreatedBy == userId || a.ManagerEmployeeId == userId);
             return Attendances(eAttendances);
         }
         #endregion
@@ -47,8 +47,7 @@ namespace AndersonWorkLogsFunction
             EAttendance eAttendance = EAttendance(attendance);
             eAttendance.UpdatedDate = DateTime.Now;
             eAttendance.UpdatedBy = updatedBy;
-            if(eAttendance.CreatedBy == updatedBy)
-                eAttendance = _iDAttendance.Update(eAttendance);
+            eAttendance = _iDAttendance.Update(eAttendance);
             return (Attendance(eAttendance));
         }
 
