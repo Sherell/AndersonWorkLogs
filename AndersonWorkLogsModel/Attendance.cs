@@ -28,7 +28,7 @@ namespace AndersonWorkLogsModel
         public string TimeInString => TimeIn.ToHtml5Date();
         public string TimeOutString => TimeOut.ToHtml5Date();
 
-
+        public List<int> SelectedIds { get; set; }
         public virtual List<WorkLog> WorkLogs { get; set; }
         public virtual List<WorkLog> DeletedWorkLogs { get; set; }
     }

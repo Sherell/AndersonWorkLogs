@@ -6,7 +6,8 @@
 <div ng-controller="AttendanceController as model" ng-init="model.Initialise()">
     <div class="row">
         <div class="col-sm-4">
-            <a href="../Attendance/Create" class="btn btn-default" style="border-color:#157AAD">Create</a>
+            <a ng-click="model.ApproveSelected()" class="btn btn-default">Approve</a>
+            <a href="../Attendance/Create" class="btn btn-default">Create</a>
         </div>
     </div>
     <div class="row">
@@ -14,25 +15,23 @@
             <table class="table table-hover table-sm table-bordered ">
                 <thead>
                     <tr class="thead-inverse">
-                        <th bgcolor="#B1B1B1"><input type="checkbox" onclick="toggle(this);" />Select All<br /></th>
-                        <th bgcolor="#B1B1B1">AttendanceId</th>
-                        <th bgcolor="#B1B1B1">UserName</th>
-                        <th bgcolor="#B1B1B1">TimeIn</th>
-                        <th bgcolor="#B1B1B1">TimeOut</th> 
-                        <th bgcolor="#B1B1B1">TotalHours</th>
-                        <th bgcolor="#B1B1B1">FullName</th>
-                        <th bgcolor="#B1B1B1">ManagerId</th>
-                        <th bgcolor="#B1B1B1">ApprovedBy</th>
-                        <th bgcolor="#B1B1B1">ApprovedDate</th>
-                        <th bgcolor="#B1B1B1">Approved</th>
-                        <th bgcolor="#B1B1B1">Actions</th>
+                        <th><input type="checkbox" ng-click="model.ToggleAll()" ng-model="model.isAllSelected"/></th>
+                        <th>AttendanceId</th>
+                        <th>UserName</th>
+                        <th>TimeIn</th>
+                        <th>TimeOut</th> 
+                        <th>TotalHours</th>
+                        <th>FullName</th>
+                        <th>ManagerId</th>
+                        <th>ApprovedBy</th>
+                        <th>ApprovedDate</th>
+                        <th>Approved</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="clickableRow" ng-repeat="attendance in model.Attendances" ng-click="$event.originalEvent.dropdown || model.GoToUpdatePage(attendance.AttendanceId)" ng-init= "model.UpdateUser(attendance)">
-                        <td>
-                            <input type="checkbox" ng-model="attendance.Selected"/>
-                        </td>
+                    <tr class="clickableRow" name="attendanceTable" ng-repeat="attendance in model.Attendances" ng-click="$event.originalEvent.dropdown">
+                        <td><input type="checkbox" ng-model="attendance.Selected" ng-change="model.CheckboxToggled()"/></td>
                         <td><span ng-bind="attendance.AttendanceId"></span></td>
                         <td><span ng-bind="attendance.User.Username"></span></td>
                         <td><span ng-bind="attendance.TimeIn"></span></td>

@@ -16,15 +16,64 @@
         
         vm.Initialise = Initialise;
         vm.GoToUpdatePage = GoToUpdatePage;
+        vm.ToggleAll = ToggleAll;
+        vm.CheckboxToggled = CheckboxToggled;
         vm.Approve = Approve;
+        vm.ApproveSelected = ApproveSelected;
         vm.Delete = Delete;
+        
+        function Initialise() {
+            Read();
+        }
 
         function GoToUpdatePage(attendanceId) {
             $window.location.href = '../Attendance/Update/' + attendanceId;
         }
 
-        function Initialise() {
-            Read();
+        function ToggleAll() {
+            var toggleStatus = vm.isAllSelected;
+            angular.forEach(vm.Attendances, function (attendance) {
+                attendance.Selected = !toggleStatus;
+            });
+        }
+
+        function CheckboxToggled() {
+            vm.isAllSelected = vm.Attendances.every(function (attendance) {
+                return attendance.Selected;
+            });
+        }
+
+        function Approve(id) {
+            AttendanceService.Approve(id)
+                .then(function (response) {
+                    if (response.data === true) {
+                        Read();
+                    }
+                })
+                .catch(function (data, status) {
+                });
+        }
+
+        function ApproveSelected() {
+            var selectedAttendance = {
+                AttendanceId: 12,
+                SelectedIds: []
+            };
+
+            angular.forEach(vm.Attendances, function (attendance) {
+                if (attendance.Selected) {
+                    selectedAttendance.SelectedIds.push(attendance.AttendanceId);
+                }
+            });
+
+            AttendanceService.ApproveSelected(selectedAttendance)
+                .then(function (response) {
+                    if (response.data === true) {
+                        Read();
+                    }
+                })
+                .catch(function (data, status) {
+                });
         }
 
         function Read() {
@@ -94,18 +143,7 @@
                 attendance.Employee.FullName = attendance.Employee.LastName + ", " + attendance.Employee.FirstName + " " + attendance.Employee.MiddleName;
             });
         }
-
-        function Approve(id) {
-            AttendanceService.Approve(id)
-                .then(function (response) {
-                    if (response.data === true) {
-                        Read();
-                    }
-                })
-                .catch(function (data, status) {
-                });
-        }
-
+        
         function Delete(attendanceId) {
             AttendanceService.Delete(attendanceId)
                 .then(function (response) {

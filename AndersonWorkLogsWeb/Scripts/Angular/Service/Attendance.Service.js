@@ -11,6 +11,7 @@
         return {
             Read: Read,
             Approve: Approve,
+            ApproveSelected: ApproveSelected,
             Delete: Delete
         }
 
@@ -26,6 +27,15 @@
             return $http({
                 method: 'POST',
                 url: '/Attendance/Approve/' + attendanceId,
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            });
+        }
+
+        function ApproveSelected(attendance) {
+            return $http({
+                method: 'POST',
+                url: '/Attendance/ApproveSelected',
+                data: $.param(attendance),
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             });
         }

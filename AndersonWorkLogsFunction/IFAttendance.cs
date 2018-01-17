@@ -17,6 +17,7 @@ namespace AndersonWorkLogsFunction
         #region UPDATE
         Attendance Update(int updatedBy, Attendance attendance);
         void Approve(int approvedBy, int attendanceId);
+        void MultipleApprove(int approvedBy, List<int> attendanceIds);
         #endregion
 
         #region DELETE

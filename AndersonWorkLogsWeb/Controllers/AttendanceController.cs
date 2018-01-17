@@ -1,6 +1,8 @@
 ﻿using AndersonWorkLogsFunction;
 using AndersonWorkLogsModel;
 using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Web.Mvc;
 
 namespace AndersonWorkLogsWeb.Controllers
@@ -46,6 +48,13 @@ namespace AndersonWorkLogsWeb.Controllers
         [HttpPost]
         public JsonResult Read()
         {
+            List<Attendance> attendances = _iFAttendance.Read(UserId);
+
+            foreach(Attendance attendance in attendances)
+            {
+                Debug.Write(attendance.TimeInString);
+            }
+            
             return Json(_iFAttendance.Read(UserId));
         }
         #endregion
@@ -83,6 +92,14 @@ namespace AndersonWorkLogsWeb.Controllers
             {
                 return Json(true);
             }
+        }
+
+        [HttpPost]
+        public JsonResult ApproveSelected(Attendance attendance)
+        {
+            if (attendance.SelectedIds != null)
+                _iFAttendance.MultipleApprove(UserId, attendance.SelectedIds);
+            return Json(true);
         }
         #endregion
 

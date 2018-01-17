@@ -61,6 +61,20 @@ namespace AndersonWorkLogsFunction
             eAttendance.ApprovedBy = approvedBy;
             _iDAttendance.Update(eAttendance);
         }
+
+        public void MultipleApprove(int approvedBy, List<int> attendanceIds)
+        {
+            foreach(int attendanceId in attendanceIds)
+            {
+                EAttendance eAttendance = _iDAttendance.Read<EAttendance>(a => a.AttendanceId == attendanceId);
+                eAttendance.UpdatedDate = DateTime.Now;
+                eAttendance.UpdatedBy = approvedBy;
+
+                eAttendance.ApprovedDate = DateTime.Now;
+                eAttendance.ApprovedBy = approvedBy;
+                _iDAttendance.Update(eAttendance);
+            }
+        }
         #endregion
 
         #region DELETE
