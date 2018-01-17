@@ -15,16 +15,15 @@
             <table class="table table-hover table-sm table-bordered ">
                 <thead>
                     <tr class="thead-inverse">
-                        <th><input type="checkbox" ng-click="model.ToggleAll()" ng-model="model.isAllSelected"/></th>
-                        <th>AttendanceId</th>
-                        <th>UserName</th>
-                        <th>TimeIn</th>
-                        <th>TimeOut</th> 
-                        <th>TotalHours</th>
-                        <th>FullName</th>
-                        <th>ManagerId</th>
+                        <th>Attendance ID</th>
+                        <th>Username</th>
+                        <th>Time In</th>
+                        <th>Time Out</th>
+                        <th>Total Hours</th>
+                        <th>Fullname</th>
+                        <th>Manager name</th>
                         <th>ApprovedBy</th>
-                        <th>ApprovedDate</th>
+                        <th>Approved Date</th>
                         <th>Approved</th>
                         <th>Actions</th>
                     </tr>
@@ -38,7 +37,7 @@
                         <td><span ng-bind="attendance.TimeOut"></span></td>
                         <td><span ng-bind="attendance.Hours"></span></td>
                         <td><span ng-bind="attendance.Employee.FullName"></span></td>
-                        <td><span ng-bind="attendance.ManagerEmployeeId"></span></td>
+                        <td><span ng-bind="attendance.Manager.FullName"></span></td>
                         <td><span ng-bind="attendance.ApprovedBy"></span></td>
                         <td><span ng-bind="attendance.ApprovedDate"></span></td>
                         <td><span ng-bind="attendance.Approved"></span></td>
