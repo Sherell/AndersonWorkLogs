@@ -59,7 +59,7 @@
     </Reference>
     <Reference Include="AccountsWebAuthentication, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\DLL\Release\Accounts\AccountsWebAuthentication.dll</HintPath>
+      <HintPath>..\..\DLL\Debug\Accounts\AccountsWebAuthentication.dll</HintPath>
     </Reference>
     <Reference Include="AndersonCRMData, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -946,6 +946,7 @@
     <Content Include="Views\Attendance\Create.cshtml" />
     <Content Include="Views\Attendance\Update.cshtml" />
     <Content Include="Views\Attendance\Index.cshtml" />
+    <Content Include="Views\Home\Summary.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>

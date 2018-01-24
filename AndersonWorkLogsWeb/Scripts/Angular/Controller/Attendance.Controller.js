@@ -15,9 +15,10 @@
         vm.Employees = [];
         
         vm.Initialise = Initialise;
+        vm.InitialiseSummary = InitialiseSummary;
         vm.GoToUpdatePage = GoToUpdatePage;
-        vm.ToggleAll = ToggleAll;
         vm.CheckboxToggled = CheckboxToggled;
+        vm.ToggleAll = ToggleAll;
         vm.Approve = Approve;
         vm.ApproveSelected = ApproveSelected;
         vm.Delete = Delete;
@@ -26,20 +27,24 @@
             Read();
         }
 
+        function InitialiseSummary() {
+            ReadSummary();
+        }
+
         function GoToUpdatePage(attendanceId) {
             $window.location.href = '../Attendance/Update/' + attendanceId;
+        }
+
+        function CheckboxToggled() {
+            vm.isAllSelected = vm.Attendances.every(function (attendance) {
+                return attendance.Selected;
+            });
         }
 
         function ToggleAll() {
             var toggleStatus = vm.isAllSelected;
             angular.forEach(vm.Attendances, function (attendance) {
                 attendance.Selected = !toggleStatus;
-            });
-        }
-
-        function CheckboxToggled() {
-            vm.isAllSelected = vm.Attendances.every(function (attendance) {
-                return attendance.Selected;
             });
         }
 
@@ -56,7 +61,6 @@
 
         function ApproveSelected() {
             var selectedAttendance = {
-                AttendanceId: 12,
                 SelectedIds: []
             };
 
@@ -76,11 +80,45 @@
                 });
         }
 
+        function ReadSummary() {
+            AttendanceService.ReadSummary()
+                .then(function (response) {
+                    vm.Attendances = response.data;
+                    ReadUsers();
+                })
+                .catch(function (data, status) {
+                    new PNotify({
+                        title: status,
+                        text: data,
+                        type: 'error',
+                        hide: true,
+                        addclass: "stack-bottomright"
+                    });
+                });
+        }
+
         function Read() {
             AttendanceService.Read()
                 .then(function (response) {
                     vm.Attendances = response.data;
                     ReadUsers();
+                })
+                .catch(function (data, status) {
+                    new PNotify({
+                        title: status,
+                        text: data,
+                        type: 'error',
+                        hide: true,
+                        addclass: "stack-bottomright"
+                    });
+                });
+        }
+
+        function ReadUsers() {
+            UserService.Read()
+                .then(function (response) {
+                    vm.Users = response.data;
+                    UpdateUser();
                     ReadEmployees();
                 })
                 .catch(function (data, status) {
@@ -91,25 +129,6 @@
                         hide: true,
                         addclass: "stack-bottomright"
                     });
-
-                });
-        }
-
-        function ReadUsers() {
-            UserService.Read()
-                .then(function (response) {
-                    vm.Users = response.data;
-                    UpdateUser();
-                })
-                .catch(function (data, status) {
-                    new PNotify({
-                        title: status,
-                        text: data,
-                        type: 'error',
-                        hide: true,
-                        addclass: "stack-bottomright"
-                    });
-
                 });
         }
 
@@ -123,7 +142,7 @@
             EmployeeService.Read()
                 .then(function (response) {
                     vm.Employees = response.data;
-                    UpdateEmployee();
+                    UpdateEmployeeNames();
                 })
                 .catch(function (data, status) {
                     new PNotify({
@@ -133,16 +152,16 @@
                         hide: true,
                         addclass: "stack-bottomright"
                     });
-
                 });
         }
 
-        function UpdateEmployee() {
+        function UpdateEmployeeNames() {
             angular.forEach(vm.Attendances, function (attendance) {
                 attendance.Employee = $filter('filter')(vm.Employees, { EmployeeId: attendance.User.EmployeeId })[0];
                 attendance.Employee.FullName = attendance.Employee.LastName + ", " + attendance.Employee.FirstName + " " + attendance.Employee.MiddleName;
                 attendance.Manager = $filter('filter')(vm.Employees, { EmployeeId: attendance.ManagerEmployeeId })[0];
-                attendance.Manager.FullName = attendance.Manager.LastName + ", " + attendance.Manager.FirstName + " " + attendance.Manager.MiddleName;
+                if (attendance.Manager != undefined)
+                    attendance.Manager.FullName = attendance.Manager.LastName + ", " + attendance.Manager.FirstName + " " + attendance.Manager.MiddleName;
             });
         }
         

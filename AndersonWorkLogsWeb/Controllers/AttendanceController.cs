@@ -2,8 +2,9 @@
 using AndersonWorkLogsModel;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Web.Mvc;
+using System.Linq;
+using System.Diagnostics;
 
 namespace AndersonWorkLogsWeb.Controllers
 {
@@ -32,7 +33,7 @@ namespace AndersonWorkLogsWeb.Controllers
         [HttpPost]
         public ActionResult Create(Attendance attendance)
         {
-            var createdAttendance = _iFAttendance.Create(UserId, attendance);
+            var createdAttendance = _iFAttendance.Create(UserId, ManagerEmployeeId, attendance);
             _iFWorkLog.Create(createdAttendance.AttendanceId, UserId, attendance.WorkLogs);
             return RedirectToAction("Index");
         }
@@ -48,14 +49,13 @@ namespace AndersonWorkLogsWeb.Controllers
         [HttpPost]
         public JsonResult Read()
         {
-            List<Attendance> attendances = _iFAttendance.Read(UserId);
+            return Json(_iFAttendance.Read(UserId, EmployeeId));
+        }
 
-            foreach(Attendance attendance in attendances)
-            {
-                Debug.Write(attendance.TimeInString);
-            }
-            
-            return Json(_iFAttendance.Read(UserId));
+        [HttpPost]
+        public JsonResult ReadSummary()
+        {
+            return Json(_iFAttendance.Readsummary());
         }
         #endregion
 

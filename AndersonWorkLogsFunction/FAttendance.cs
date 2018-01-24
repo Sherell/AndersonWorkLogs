@@ -17,11 +17,12 @@ namespace AndersonWorkLogsFunction
         }
 
         #region CREATE
-        public Attendance Create(int createdBy, Attendance attendance)
+        public Attendance Create(int createdBy, int managerEmployeeId, Attendance attendance)
         {
             EAttendance eAttendance = EAttendance(attendance);
             eAttendance.CreatedDate = DateTime.Now;
             eAttendance.CreatedBy = createdBy;
+            eAttendance.ManagerEmployeeId = managerEmployeeId;
             eAttendance = _iDAttendance.Create(eAttendance);
             return (Attendance(eAttendance));
         }
@@ -31,13 +32,38 @@ namespace AndersonWorkLogsFunction
         public Attendance ReadId(int attendanceId)
         {
             EAttendance eAttendance = _iDAttendance.Read<EAttendance>(a => a.AttendanceId == attendanceId);
+
             return Attendance(eAttendance);
         }
 
-        public List<Attendance> Read(int userId)
+        public List<Attendance> Read()
         {
-            List<EAttendance> eAttendances = _iDAttendance.List<EAttendance>(a => a.CreatedBy == userId || a.ManagerEmployeeId == userId);
+            List<EAttendance> eAttendances = _iDAttendance.List<EAttendance>(a => true);
+            
             return Attendances(eAttendances);
+        }
+
+        public List<Attendance> Read(int userId, int employeeId)
+        {
+            List<EAttendance> eAttendances = _iDAttendance.List<EAttendance>(a => a.CreatedBy == userId || a.ManagerEmployeeId == employeeId);
+
+            return Attendances(eAttendances);
+        }
+
+        public List<AttendanceSummary> Readsummary()
+        {
+            List<EAttendance> eAttendances = _iDAttendance.List<EAttendance>(a => true);
+            List<AttendanceSummary> attendanceSummaries = new List<AttendanceSummary>();
+            attendanceSummaries = eAttendances.GroupBy(d => d.CreatedBy)
+                .Select(
+                    a => new AttendanceSummary
+                    {
+                        CreatedBy = a.Key,
+                        NumberOfAttendances = a.Count(),
+                        Hours = a.Sum(b => b.Hours)
+                    }).ToList();
+
+            return attendanceSummaries;
         }
         #endregion
 
@@ -48,6 +74,7 @@ namespace AndersonWorkLogsFunction
             eAttendance.UpdatedDate = DateTime.Now;
             eAttendance.UpdatedBy = updatedBy;
             eAttendance = _iDAttendance.Update(eAttendance);
+
             return (Attendance(eAttendance));
         }
 

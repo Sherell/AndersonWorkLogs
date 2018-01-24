@@ -17,9 +17,10 @@ namespace AndersonWorkLogsModel
 
         public DateTime TimeIn { get; set; }
         public DateTime TimeOut { get; set; }
-
         public DateTime? ApprovedDate { get; set; }
+
         public double Hours { get; set; }
+
         public int AttendanceId { get; set; }
         public int UserId { get; set; }
         public int ApprovedBy { get; set; }
