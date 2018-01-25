@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-sm-4">
             <a href="../Attendance/Create" class="btn btn-default">Create</a>
-            <a ng-click="model.ApproveSelected()" class="btn btn-default">Approve</a>
+            <a ng-click="model.ConfirmApproval()" class="btn btn-default">Approve</a>
         </div>
     </div>
     <br />
@@ -24,7 +24,6 @@
                         <th>Total Hours</th>
                         <th>Fullname</th>
                         <th>Manager name</th>
-                        <th>ApprovedBy</th>
                         <th>Approved Date</th>
                         <th>Approved</th>
                         <th>Actions</th>
@@ -40,7 +39,7 @@
                         <td><span ng-bind="attendance.Hours" /></td>
                         <td><span ng-bind="attendance.Employee.FullName" /></td>
                         <td><span ng-bind="attendance.Manager.FullName" /></td>
-                        <td><span ng-bind="attendance.ApprovedBy" /></td>
+                       
                         <td><span ng-bind="attendance.ApprovedDate" /></td>
                         <td><span ng-bind="attendance.Approved" /></td>
                         <td ng-click="$event.originalEvent.dropdown = true">
