@@ -10,6 +10,8 @@
     function AttendanceController($filter, $window, AttendanceService, UserService, EmployeeService) {
         var vm = this;
         
+        vm.AttendanceFilter;
+
         vm.Attendances = [];
         vm.Users = [];
         vm.Employees = [];
