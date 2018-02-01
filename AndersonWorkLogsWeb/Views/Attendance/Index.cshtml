@@ -4,14 +4,13 @@
 }
 
 <div ng-controller="AttendanceController as model" ng-init="model.Initialise()">
-    <div class="row">
-        <div class="col-sm-4">
+    <div class="row" style="display:flex">
+        <div class="col-sm-2" style="margin-top:auto">
             <a href="../Attendance/Create" class="btn btn-default">Create</a>
             <a ng-click="model.ConfirmApproval()" class="btn btn-default">Approve</a>
         </div>
-        <br />
             
-        <div class="cart pull-right">
+        <div class="col-sm-5 cart pull-left">
             <label>Department list</label>
             <ui-select multiple ng-model="model.AttendanceFilter.DepartmentIds">
                 <ui-select-match placeholder="Select Department...">
@@ -22,9 +21,8 @@
                     <span ng-bind="department.Name"></span>
                 </ui-select-choices>
             </ui-select>
-      </div>
-            </div>
-
+        </div>
+    </div>
 
     <br />
 
