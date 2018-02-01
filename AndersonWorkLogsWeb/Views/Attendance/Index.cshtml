@@ -2,7 +2,6 @@
 @{
     ViewBag.Title = "Index";
 }
-@*<body style="background:linear-gradient(Powderblue, white); background-attachment:fixed;">*@
     <div ng-controller="AttendanceController as model" ng-init="model.Initialise()">
         <div class="row">
             <div class="col-sm-4">
@@ -10,20 +9,18 @@
                 <a ng-click="model.ConfirmApproval()" class="btn btn-default">Approve</a>    
             </div>
             <br />
-            <div style="position:absolute; left:450px; right:450px">
-            <center>
-                <label>EnterName</label>
-                <ui-select multiple ng-model="model.AttendanceFilter.Employees">
-                    <ui-select-match placeholder="Select Employee...">
-                        <span ng-bind="$select.selected.FirstName"></span>
-                        {{$item.FirstName}}
-                    </ui-select-match>
-                    <ui-select-choices repeat="employee in (model.Employees | filter: $select.search) track by $index">
-                        <span ng-bind="employee.FirstName"></span>
-                    </ui-select-choices>
-                </ui-select>
-            </center>
-            </div>
+                <div class="col-sm-5 cart pull-right">
+                        <label>EnterName</label>
+                            <ui-select multiple ng-model="model.AttendanceFilter.Employees">
+                                <ui-select-match placeholder="Select Employee..." >
+                                    <span ng-bind="$select.selected.FirstName"></span>
+                                    {{$item.FirstName}}
+                                </ui-select-match>
+                                <ui-select-choices repeat="employee in (model.Employees | filter: $select.search) track by $index">
+                                    <span ng-bind="employee.FirstName"></span>
+                                </ui-select-choices>
+                            </ui-select>
+                </div>
             <br />
         </div>
         <br />
@@ -79,4 +76,3 @@
             </div>
         </div>
     </div>
-@*</body>*@
