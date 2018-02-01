@@ -12,6 +12,8 @@
 
         vm.AttendanceFilter;
         
+        vm.AttendanceFilter;
+
         vm.Attendances = [];
         vm.Departments = [];
         vm.Employees = [];
