@@ -8,32 +8,31 @@
                 <a href="../Attendance/Create" class="btn btn-default">Create</a>
                 <a ng-click="model.ConfirmApproval()" class="btn btn-default">Approve</a>
             </div>
-            <br />
-            <div class="col-sm-5 cart pull-right">
-                <label>EnterName</label>
-                <ui-select multiple ng-model="model.AttendanceFilter.Employees">
-                    <ui-select-match placeholder="Select Employee...">
-                        <span ng-bind="$select.selected.FirstName"></span>
-                        {{$item.FirstName}}
-                    </ui-select-match>
-                    <ui-select-choices repeat="employee in (model.Employees | filter: $select.search) track by $index">
-                        <span ng-bind="employee.FirstName"></span>
-                    </ui-select-choices>
-                </ui-select>
-            </div>
-            <div class="col-sm-5 cart pull-left">
-                <label>Department list</label>
-                <ui-select multiple ng-model="model.AttendanceFilter.DepartmentIds">
-                    <ui-select-match placeholder="Select Department...">
-                        <span ng-bind="$select.selected.Name"></span>
-                        {{$item.Name}}
-                    </ui-select-match>
-                    <ui-select-choices repeat="department in (model.Departments | filter: $select.search) track by $index">
-                        <span ng-bind="department.Name"></span>
-                    </ui-select-choices>
-                </ui-select>
-            </div>
-        </div>
+                <div class="col-sm-5 cart pull-left">
+                    <label>Department list</label>
+                    <ui-select multiple ng-model="model.AttendanceFilter.DepartmentIds">
+                        <ui-select-match placeholder="Select Department...">
+                            <span ng-bind="$select.selected.Name"></span>
+                            {{$item.Name}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="department in (model.Departments | filter: $select.search) track by $index">
+                            <span ng-bind="department.Name"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+                <div class="col-sm-5 cart pull-right">
+                    <label>EnterName</label>
+                    <ui-select multiple ng-model="model.AttendanceFilter.Employees">
+                        <ui-select-match placeholder="Select Employee...">
+                            <span ng-bind="$select.selected.FirstName"></span>
+                            {{$item.FirstName}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="employee in (model.Employees | filter: $select.search) track by $index">
+                            <span ng-bind="employee.FirstName"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+        
 
             <br />
         </div>
