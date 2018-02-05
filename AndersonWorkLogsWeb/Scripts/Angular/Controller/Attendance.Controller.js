@@ -24,6 +24,7 @@
         vm.ToggleAll = ToggleAll;
         vm.Approve = Approve;
         vm.ApproveSelected = ApproveSelected;
+        vm.ConfirmApproval = ConfirmApproval;
         vm.Delete = Delete;
 
         function FilteredRead() {
@@ -111,6 +112,20 @@
                 })
                 .catch(function (data, status) {
                 });
+        }
+
+        function ConfirmApproval() {
+            var selectedAttendance = $filter('filter')(vm.Attendances, { Selected: true });
+
+            if (selectedAttendance.length != 0) {
+                if (confirm("Approve " + selectedAttendance.length + " attendance?")) {
+                    ApproveSelected();
+                    alert("Successfully Approved!");
+                }
+                else {
+                    alert("Approval Cancelled");
+                }
+            }
         }
 
         function ReadSummary() {
