@@ -723,6 +723,7 @@
     </Content>
     <Content Include="Global.asax" />
     <Content Include="Scripts\Angular\app.module.js" />
+    <Content Include="Scripts\Angular\Controller\Employee.Controller.js" />
     <Content Include="Scripts\Angular\Controller\WorkLog.Controller.js" />
     <Content Include="Scripts\Angular\Controller\Attendance.Controller.js" />
     <Content Include="Scripts\Angular\Service\Employee.Service.js" />
