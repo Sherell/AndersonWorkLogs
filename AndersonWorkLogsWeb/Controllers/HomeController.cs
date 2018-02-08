@@ -15,11 +15,6 @@ namespace AndersonWorkLogsWeb.Controllers
             return View();
         }
 
-        public ActionResult RecentlyDelete()
-        {
-            return View();
-        }
-
         public ActionResult About()
         {
             return View();

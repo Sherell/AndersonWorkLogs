@@ -1,5 +1,4 @@
 ﻿@using AndersonWorkLogsModel;
-@model AttendanceFilter
 
 @{
     ViewBag.Title = "Index";
@@ -11,48 +10,47 @@
             <a href="../Attendance/Create" class="btn btn-default">Create</a>
             <a ng-click="model.ConfirmApproval()" class="btn btn-default">Approve</a>
         </div>
-        <div class="col-sm-4 ">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title" data-toggle="collapse" data-target="#Filter">Filters</h3>
-                </div>
-                <div class="panel-body collapse" id="Filter">
+        <div class="col-sm-5 cart pull-right">
+            <div class="panel-heading">
+                <h3 class="panel-title" data-toggle="collapse" data-target="#Filter">Filters</h3>
+            </div>
+            <div class="panel-body collapse" id="Filter">
+                <div>
                     <div>
-                        <div>
-                            <label>TimeInFrom</label>
-                            <input type="date" class="form-control" ng-model="model.AttendanceFilter.TimeInFrom">
-                        </div>
-                        <div>
-                            <label>TimeInTo</label>
-                            <input type="date" class="form-control" ng-model="model.AttendanceFilter.TimeInTo">
-                        </div>
-                        <div ng-controller="EmployeeController as employeeModel" ng-init="employeeModel.Initialise()">
-                            <label>Employee</label>
-                            <ui-select multiple ng-model="model.AttendanceFilter.Employees">
-                                <ui-select-match placeholder="Select Employee..." style="width: 100%">
-                                    <span ng-bind="$select.selected.FullName"></span>
-                                    {{$item.FullName}}
-                                </ui-select-match>
-                                <ui-select-choices repeat="employee in (employeeModel.Employees | filter: $select.search) track by $index">
-                                    <span ng-bind="employee.FullName"></span>
-                                </ui-select-choices>
-                            </ui-select>
-                            <label>Employees Under</label>
-                            <ui-select multiple ng-model="model.AttendanceFilter.ManagerEmployees">
-                                <ui-select-match placeholder="Select Employee..." style="width: 100%">
-                                    <span ng-bind="$select.selected.FullName"></span>
-                                    {{$item.FullName}}
-                                </ui-select-match>
-                                <ui-select-choices repeat="employee in (employeeModel.Employees | filter: $select.search) track by $index">
-                                    <span ng-bind="employee.FullName"></span>
-                                </ui-select-choices>
-                            </ui-select>
-                        </div>
-                        <a ng-click="model.FilteredRead()" class="btn btn-default">TryF</a>
+                        <label>Time in From</label>
+                        <input type="date" class="form-control" ng-model="model.AttendanceFilter.TimeInFrom">
                     </div>
+                    <div>
+                        <label>Time in To</label>
+                        <input type="date" class="form-control" ng-model="model.AttendanceFilter.TimeInTo">
+                    </div>
+                    <div ng-controller="EmployeeController as employeeModel" ng-init="employeeModel.Initialise()">
+                        <label>Employee</label>
+                        <ui-select multiple ng-model="model.AttendanceFilter.Employees">
+                            <ui-select-match placeholder="Select Employee..." style="width: 100%">
+                                <span ng-bind="$select.selected.FullName"></span>
+                                {{$item.FullName}}
+                            </ui-select-match>
+                            <ui-select-choices repeat="employee in (employeeModel.Employees | filter: $select.search) track by $index">
+                                <span ng-bind="employee.FullName"></span>
+                            </ui-select-choices>
+                        </ui-select>
+                        <label>Employees Under</label>
+                        <ui-select multiple ng-model="model.AttendanceFilter.ManagerEmployees">
+                            <ui-select-match placeholder="Select Employee..." style="width: 100%">
+                                <span ng-bind="$select.selected.FullName"></span>
+                                {{$item.FullName}}
+                            </ui-select-match>
+                            <ui-select-choices repeat="employee in (employeeModel.Employees | filter: $select.search) track by $index">
+                                <span ng-bind="employee.FullName"></span>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                    <a ng-click="model.FilteredRead()" class="btn btn-default">TryF</a>
                 </div>
             </div>
         </div>
+    </div>
         
     </div>
     <br />

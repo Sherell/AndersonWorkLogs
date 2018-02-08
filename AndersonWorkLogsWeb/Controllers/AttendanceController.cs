@@ -43,6 +43,10 @@ namespace AndersonWorkLogsWeb.Controllers
         {
             return View();
         }
+        public ActionResult RecentlyDelete()
+        {
+            return View();
+        }
 
         [HttpPost]
         public JsonResult Read()
