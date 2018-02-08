@@ -4,6 +4,7 @@ using AndersonWorkLogsModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace AndersonWorkLogsFunction
 {
@@ -36,10 +37,25 @@ namespace AndersonWorkLogsFunction
             return Attendance(eAttendance);
         }
 
-        public List<Attendance> Read()
+        public List<Attendance> Read(AttendanceFilter attendanceFilter)
         {
-            List<EAttendance> eAttendances = _iDAttendance.List<EAttendance>(a => true);
-            
+            if (attendanceFilter.ManagerEmployeeIds == null)
+                attendanceFilter.ManagerEmployeeIds = new List<int>();
+
+            Expression<Func<EAttendance, bool>> predicate =
+                a => (((a.TimeIn >= attendanceFilter.TimeInFrom && a.TimeIn <= attendanceFilter.TimeInTo)
+                || (a.TimeOut >= attendanceFilter.TimeInFrom && a.TimeOut <= attendanceFilter.TimeInTo)) 
+                || (!attendanceFilter.TimeInFrom.HasValue || !attendanceFilter.TimeInTo.HasValue))
+                && (!attendanceFilter.ManagerEmployeeIds.Any() || attendanceFilter.ManagerEmployeeIds.Contains(a.ManagerEmployeeId));
+
+            //(a.TimeIn >= attendanceFilter.TimeInFrom) && (a.TimeOut <= attendanceFilter.TimeInTo) ||
+
+            //Expression<Func<EAttendance, bool>> predicate =
+            //    a => (attendanceFilter.TimeInFrom.HasValue || a.TimeIn >= attendanceFilter.TimeInFrom)
+            //    && (attendanceFilter.TimeInTo.HasValue || a.TimeOut >= attendanceFilter.TimeInTo)
+            //    && (attendanceFilter.ManagerEmployeeIds.Any() || attendanceFilter.ManagerEmployeeIds.Contains(a.ManagerEmployeeId));
+            //looks like we need to add EmployeeId
+            List <EAttendance> eAttendances = _iDAttendance.List(predicate);
             return Attendances(eAttendances);
         }
 
@@ -50,7 +66,7 @@ namespace AndersonWorkLogsFunction
             return Attendances(eAttendances);
         }
 
-        public List<AttendanceSummary> Readsummary()
+        public List<AttendanceSummary> ReadSummary()
         {
             List<EAttendance> eAttendances = _iDAttendance.List<EAttendance>(a => true);
             List<AttendanceSummary> attendanceSummaries = new List<AttendanceSummary>();

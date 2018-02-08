@@ -11,9 +11,9 @@ namespace AndersonWorkLogsFunction
 
         #region READ
         Attendance ReadId(int attendanceId);
-        List<Attendance> Read();
+        List<Attendance> Read(AttendanceFilter attendanceFilter);
         List<Attendance> Read(int userId, int employeeId);
-        List<AttendanceSummary> Readsummary();
+        List<AttendanceSummary> ReadSummary();
         #endregion
 
         #region UPDATE
