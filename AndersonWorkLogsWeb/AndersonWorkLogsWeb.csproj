@@ -726,6 +726,7 @@
     <Content Include="Scripts\Angular\Controller\Employee.Controller.js" />
     <Content Include="Scripts\Angular\Controller\WorkLog.Controller.js" />
     <Content Include="Scripts\Angular\Controller\Attendance.Controller.js" />
+    <Content Include="Scripts\Angular\Service\Department.Service.js" />
     <Content Include="Scripts\Angular\Service\Employee.Service.js" />
     <Content Include="Scripts\Angular\Service\User.Service.js" />
     <Content Include="Scripts\Angular\Service\WorkLog.Service.js" />
@@ -739,6 +740,7 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\UnityMvcActivator.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\WorkLogController.cs" />
@@ -945,9 +947,10 @@
     <Content Include="Views\Shared\_AuditColumns.cshtml" />
     <Content Include="Views\Attendance\_Attendance.cshtml" />
     <Content Include="Views\Attendance\Create.cshtml" />
-    <Content Include="Views\Attendance\Update.cshtml" />
     <Content Include="Views\Attendance\Index.cshtml" />
     <Content Include="Views\Home\Summary.cshtml" />
+    <Content Include="Views\Attendance\Update.cshtml" />
+    <Content Include="Views\Home\RecentlyDelete.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>

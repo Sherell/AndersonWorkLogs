@@ -5,16 +5,17 @@
         .module('App')
         .controller('AttendanceController', AttendanceController);
 
-    AttendanceController.$inject = ['$filter', '$window', 'AttendanceService','UserService', 'EmployeeService'];
+    AttendanceController.$inject = ['$filter', '$window', 'AttendanceService', 'UserService', 'EmployeeService', 'DepartmentService'];
 
-    function AttendanceController($filter, $window, AttendanceService, UserService, EmployeeService) {
+    function AttendanceController($filter, $window, AttendanceService, UserService, EmployeeService, DepartmentService) {
         var vm = this;
 
         vm.AttendanceFilter = {};
 
         vm.Attendances = [];
-        vm.Users = [];
+        vm.Departments = [];
         vm.Employees = [];
+        vm.Users = [];
         
         vm.FilteredRead = FilteredRead;
         vm.Initialise = Initialise;
@@ -62,6 +63,7 @@
 
         function Initialise() {
             Read();
+            ReadDepartment();
         }
 
         function InitialiseSummary() {
@@ -136,6 +138,22 @@
                 .then(function (response) {
                     vm.Attendances = response.data;
                     ReadUsers();
+                })
+                .catch(function (data, status) {
+                    new PNotify({
+                        title: status,
+                        text: data,
+                        type: 'error',
+                        hide: true,
+                        addclass: "stack-bottomright"
+                    });
+                });
+        }
+
+        function ReadDepartment() {
+            DepartmentService.Read()
+                .then(function (response) {
+                    vm.Departments = response.data;
                 })
                 .catch(function (data, status) {
                     new PNotify({
