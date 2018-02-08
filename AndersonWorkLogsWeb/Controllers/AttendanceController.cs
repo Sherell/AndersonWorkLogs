@@ -1,6 +1,7 @@
 ﻿using AndersonWorkLogsFunction;
 using AndersonWorkLogsModel;
 using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace AndersonWorkLogsWeb.Controllers
@@ -30,7 +31,7 @@ namespace AndersonWorkLogsWeb.Controllers
         [HttpPost]
         public ActionResult Create(Attendance attendance)
         {
-            var createdAttendance = _iFAttendance.Create(UserId, ManagerEmployeeId, attendance);
+            var createdAttendance = _iFAttendance.Create(UserId, EmployeeId, ManagerEmployeeId, attendance);
             _iFWorkLog.Create(createdAttendance.AttendanceId, UserId, attendance.WorkLogs);
             return RedirectToAction("Index");
         }
@@ -46,7 +47,12 @@ namespace AndersonWorkLogsWeb.Controllers
         [HttpPost]
         public JsonResult Read()
         {
-            return Json(_iFAttendance.Read(UserId, EmployeeId));
+            List<Attendance> attendances = _iFAttendance.Read(UserId, EmployeeId);
+            foreach(Attendance attendance in attendances)
+            {
+                attendance.WorkLogs = _iFWorkLog.Read(attendance.AttendanceId);
+            }
+            return Json(attendances);
         }
 
         [HttpPost]
@@ -54,7 +60,13 @@ namespace AndersonWorkLogsWeb.Controllers
         {
             try
             {
-                return Json(_iFAttendance.Read(attendanceFilter));
+                List<Attendance> attendances = _iFAttendance.Read(attendanceFilter);
+                foreach (Attendance attendance in attendances)
+                {
+                    attendance.WorkLogs = _iFWorkLog.Read(attendance.AttendanceId);
+                }
+                return Json(attendances);
+                //return Json(_iFAttendance.Read(attendanceFilter));
             }
             catch (Exception exception)
             {

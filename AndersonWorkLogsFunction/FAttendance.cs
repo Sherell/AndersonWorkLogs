@@ -18,11 +18,12 @@ namespace AndersonWorkLogsFunction
         }
 
         #region CREATE
-        public Attendance Create(int createdBy, int managerEmployeeId, Attendance attendance)
+        public Attendance Create(int createdBy, int employeeId, int managerEmployeeId, Attendance attendance)
         {
             EAttendance eAttendance = EAttendance(attendance);
             eAttendance.CreatedDate = DateTime.Now;
             eAttendance.CreatedBy = createdBy;
+            eAttendance.EmployeeId = employeeId;
             eAttendance.ManagerEmployeeId = managerEmployeeId;
             eAttendance = _iDAttendance.Create(eAttendance);
             return (Attendance(eAttendance));
@@ -39,6 +40,8 @@ namespace AndersonWorkLogsFunction
 
         public List<Attendance> Read(AttendanceFilter attendanceFilter)
         {
+            if (attendanceFilter.EmployeeIds == null)
+                attendanceFilter.EmployeeIds = new List<int>();
             if (attendanceFilter.ManagerEmployeeIds == null)
                 attendanceFilter.ManagerEmployeeIds = new List<int>();
 
@@ -46,6 +49,7 @@ namespace AndersonWorkLogsFunction
                 a => (((a.TimeIn >= attendanceFilter.TimeInFrom && a.TimeIn <= attendanceFilter.TimeInTo)
                 || (a.TimeOut >= attendanceFilter.TimeInFrom && a.TimeOut <= attendanceFilter.TimeInTo)) 
                 || (!attendanceFilter.TimeInFrom.HasValue || !attendanceFilter.TimeInTo.HasValue))
+                && (!attendanceFilter.EmployeeIds.Any() || attendanceFilter.EmployeeIds.Contains(a.EmployeeId))
                 && (!attendanceFilter.ManagerEmployeeIds.Any() || attendanceFilter.ManagerEmployeeIds.Contains(a.ManagerEmployeeId));
 
             //(a.TimeIn >= attendanceFilter.TimeInFrom) && (a.TimeOut <= attendanceFilter.TimeInTo) ||
@@ -142,6 +146,7 @@ namespace AndersonWorkLogsFunction
 
                 AttendanceId = a.AttendanceId,
                 ApprovedBy = a.ApprovedBy,
+                EmployeeId = a.EmployeeId,
                 ManagerEmployeeId = a.ManagerEmployeeId,
                 CreatedBy = a.CreatedBy,
                 UpdatedBy = a.UpdatedBy
@@ -160,6 +165,7 @@ namespace AndersonWorkLogsFunction
 
                 AttendanceId = attendance.AttendanceId,
                 ApprovedBy = attendance.ApprovedBy,
+                EmployeeId = attendance.EmployeeId,
                 ManagerEmployeeId = attendance.ManagerEmployeeId,
                 CreatedBy = attendance.CreatedBy,
                 UpdatedBy = attendance.UpdatedBy
@@ -177,6 +183,7 @@ namespace AndersonWorkLogsFunction
 
                 AttendanceId = eAttendance.AttendanceId,
                 ApprovedBy = eAttendance.ApprovedBy,
+                EmployeeId = eAttendance.EmployeeId,
                 ManagerEmployeeId = eAttendance.ManagerEmployeeId,
                 CreatedBy = eAttendance.CreatedBy,
                 UpdatedBy = eAttendance.UpdatedBy

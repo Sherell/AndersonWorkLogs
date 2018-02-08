@@ -35,10 +35,13 @@
                 attendanceFilter.TimeInFrom = moment(attendanceFilter.TimeInFrom).format('YYYY-MM-DD');
                 attendanceFilter.TimeInTo = moment(attendanceFilter.TimeInTo).add(1, 'days').format('YYYY-MM-DD');
             }
-
+            attendanceFilter.EmployeeIds = [];
+            angular.forEach(vm.AttendanceFilter.Employees, function (employee) {
+                attendanceFilter.EmployeeIds.push(employee.EmployeeId);
+            });
             attendanceFilter.ManagerEmployeeIds = [];
-            angular.forEach(vm.AttendanceFilter.ManagerEmployee, function (managerEmployee) {
-                    attendanceFilter.ManagerEmployeeIds.push(managerEmployee.EmployeeId);
+            angular.forEach(vm.AttendanceFilter.ManagerEmployees, function (managerEmployee) {
+                attendanceFilter.ManagerEmployeeIds.push(managerEmployee.EmployeeId);
             });
             console.log(attendanceFilter);
             AttendanceService.FilteredRead(attendanceFilter)

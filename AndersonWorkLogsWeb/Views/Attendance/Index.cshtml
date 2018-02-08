@@ -27,8 +27,18 @@
                             <input type="date" class="form-control" ng-model="model.AttendanceFilter.TimeInTo">
                         </div>
                         <div ng-controller="EmployeeController as employeeModel" ng-init="employeeModel.Initialise()">
-                            <label>EmployeeUnder</label>
-                            <ui-select multiple ng-model="model.AttendanceFilter.ManagerEmployee">
+                            <label>Employee</label>
+                            <ui-select multiple ng-model="model.AttendanceFilter.Employees">
+                                <ui-select-match placeholder="Select Employee..." style="width: 100%">
+                                    <span ng-bind="$select.selected.FullName"></span>
+                                    {{$item.FullName}}
+                                </ui-select-match>
+                                <ui-select-choices repeat="employee in (employeeModel.Employees | filter: $select.search) track by $index">
+                                    <span ng-bind="employee.FullName"></span>
+                                </ui-select-choices>
+                            </ui-select>
+                            <label>Employees Under</label>
+                            <ui-select multiple ng-model="model.AttendanceFilter.ManagerEmployees">
                                 <ui-select-match placeholder="Select Employee..." style="width: 100%">
                                     <span ng-bind="$select.selected.FullName"></span>
                                     {{$item.FullName}}
@@ -64,9 +74,9 @@
                         <th>Actions</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr class="clickableRow" ng-repeat="attendance in model.Attendances" ng-click="$event.originalEvent.dropdown">
-                        <td><input type="checkbox" ng-model="attendance.Selected" ng-change="model.CheckboxToggled()" /></td>
+                <tbody ng-repeat="attendance in model.Attendances track by $index">
+                    <tr class="clickableRow" data-toggle="collapse" data-target="#{{$index}}">
+                        <td><input type="checkbox" ng-model="attendance.Selected" ng-change="model.CheckboxToggled()" ng-click="$event.stopPropagation()"/></td>
                         <td><span ng-bind="attendance.AttendanceId" /></td>
                         <td><span ng-bind="attendance.User.Username" /></td>
                         <td><span ng-bind="attendance.TimeIn" /></td>
@@ -87,6 +97,21 @@
                                     <li><a href="#" ng-click="model.GoToUpdatePage(attendance.AttendanceId)">Edit</a></li>
                                     <li><a href="#" ng-click="model.Delete(attendance.AttendanceId)">Delete</a></li>
                                 </ul>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr class="collapse" id="{{$index}}">
+                        <td colspan="11">
+                            <h3 class="col-sm-offset-1 col-sm-7">Work Done</h3>
+                            <div @*ng-controller="WorkLogController as model" ng-init="model.Initialise(attendance.AttendanceId)"*@>
+                                <div class="form-group" ng-repeat="workLog in attendance.WorkLogs">
+                                    <div class="row">
+                                        <div class="col-sm-offset-1 col-sm-7">
+                                            <input class="form-control" ng-readonly="true" placeholder="WorkDone" ng-value="workLog.WorkDone">
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </td>
                     </tr>
