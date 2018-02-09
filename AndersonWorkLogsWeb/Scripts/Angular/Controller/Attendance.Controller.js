@@ -30,7 +30,7 @@
 
         function FilteredRead() {
             var attendanceFilter = angular.copy(vm.AttendanceFilter)
-            console.log(attendanceFilter.TimeInFrom);
+            console.log(vm.Attendances);
 
             if (attendanceFilter.TimeInFrom != undefined && attendanceFilter.TimeInTo != undefined) {
                 attendanceFilter.TimeInFrom = moment(attendanceFilter.TimeInFrom).format('YYYY-MM-DD');
