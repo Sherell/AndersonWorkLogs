@@ -56,6 +56,7 @@ namespace AndersonWorkLogsWeb
             container.RegisterType<IDUser, DUser>(new PerRequestLifetimeManager());
             container.RegisterType<IDEmployee, DEmployee>(new PerRequestLifetimeManager());
             container.RegisterType<IDDepartment, DDepartment>(new PerRequestLifetimeManager());
+            container.RegisterType<IDEmployeeDepartment, DEmployeeDepartment>(new PerRequestLifetimeManager());
             #endregion
 
             #region Function
@@ -64,6 +65,7 @@ namespace AndersonWorkLogsWeb
             container.RegisterType<IFUser, FUser>(new PerRequestLifetimeManager());
             container.RegisterType<IFEmployee, FEmployee>(new PerRequestLifetimeManager());
             container.RegisterType<IFDepartment, FDepartment>(new PerRequestLifetimeManager());
+            container.RegisterType<IFEmployeeDepartment, FEmployeeDepartment>(new PerRequestLifetimeManager());
             #endregion
         }
     }

@@ -1,5 +1,7 @@
 ﻿using AndersonWorkLogsFunction;
 using AndersonWorkLogsModel;
+using AndersonCRMFunction;
+using AndersonCRMModel;
 using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
@@ -10,10 +12,12 @@ namespace AndersonWorkLogsWeb.Controllers
     {
         private IFAttendance _iFAttendance;
         private IFWorkLog _iFWorkLog;
-        public AttendanceController(IFAttendance iFAttendance, IFWorkLog iFWorkLog)
+        private IFEmployeeDepartment _iFEmployeeDepartment;
+        public AttendanceController(IFAttendance iFAttendance, IFWorkLog iFWorkLog, IFEmployeeDepartment iFEmployeeDepartment)
         {
             _iFAttendance = iFAttendance;
             _iFWorkLog = iFWorkLog;
+            _iFEmployeeDepartment = iFEmployeeDepartment;
         }
 
         #region Create

@@ -42,6 +42,8 @@ namespace AndersonWorkLogsFunction
         {
             if (attendanceFilter.EmployeeIds == null)
                 attendanceFilter.EmployeeIds = new List<int>();
+            if (attendanceFilter.EmployeeIdsOfSelectedDepartments == null)
+                attendanceFilter.EmployeeIdsOfSelectedDepartments = new List<int>();
             if (attendanceFilter.ManagerEmployeeIds == null)
                 attendanceFilter.ManagerEmployeeIds = new List<int>();
 
@@ -50,6 +52,7 @@ namespace AndersonWorkLogsFunction
                 || (a.TimeOut >= attendanceFilter.TimeInFrom && a.TimeOut <= attendanceFilter.TimeInTo)) 
                 || (!attendanceFilter.TimeInFrom.HasValue || !attendanceFilter.TimeInTo.HasValue))
                 && (!attendanceFilter.EmployeeIds.Any() || attendanceFilter.EmployeeIds.Contains(a.EmployeeId))
+                && (!attendanceFilter.EmployeeIdsOfSelectedDepartments.Any() || attendanceFilter.EmployeeIdsOfSelectedDepartments.Contains(a.EmployeeId))
                 && (!attendanceFilter.ManagerEmployeeIds.Any() || attendanceFilter.ManagerEmployeeIds.Contains(a.ManagerEmployeeId));
 
             //(a.TimeIn >= attendanceFilter.TimeInFrom) && (a.TimeOut <= attendanceFilter.TimeInTo) ||
