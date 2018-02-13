@@ -11,7 +11,9 @@ namespace AndersonWorkLogsModel
         public DateTime? TimeInTo { get; set; }
 
         public List<int> AttendanceIds { get; set; }
+        public List<int> DepartmentIds { get; set; }
         public List<int> EmployeeIds { get; set; }
+        public List<int> EmployeeIdsOfSelectedDepartments { get; set; }
         public List<int> ManagerEmployeeIds { get; set; }
     }
 }

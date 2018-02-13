@@ -65,7 +65,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\DLL\Release\AndersonCRM\AndersonCRMData.dll</HintPath>
     </Reference>
-    <Reference Include="AndersonCRMFunction">
+    <Reference Include="AndersonCRMFunction, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\DLL\Release\AndersonCRM\AndersonCRMFunction.dll</HintPath>
     </Reference>
     <Reference Include="AndersonCRMModel">
@@ -726,6 +727,7 @@
     <Content Include="Scripts\Angular\Controller\Employee.Controller.js" />
     <Content Include="Scripts\Angular\Controller\WorkLog.Controller.js" />
     <Content Include="Scripts\Angular\Controller\Attendance.Controller.js" />
+    <Content Include="Scripts\Angular\Service\EmployeeDepartment.Service.js" />
     <Content Include="Scripts\Angular\Service\Department.Service.js" />
     <Content Include="Scripts\Angular\Service\Employee.Service.js" />
     <Content Include="Scripts\Angular\Service\User.Service.js" />
@@ -740,6 +742,7 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\UnityMvcActivator.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\EmployeeDepartmentController.cs" />
     <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
