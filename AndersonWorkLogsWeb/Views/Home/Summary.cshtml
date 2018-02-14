@@ -23,7 +23,7 @@
                         <td><span ng-bind="attendance.CreatedBy" /></td>
                         <td><span ng-bind="attendance.Employee.FullName" /></td>
                         <td><span ng-bind="attendance.NumberOfAttendances" /></td>
-                        <td><span ng-bind="attendance.Hours" /></td>
+                        <td><span ng-bind="attendance.Hours|number:2" /></td>
                         <td><span ng-bind="attendance.Manager.FullName" /></td>
                     </tr>
                 </tbody>
